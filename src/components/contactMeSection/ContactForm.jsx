@@ -44,7 +44,7 @@ const ContactForm = () => {
           name="from_name"
           placeholder="Your Name"
           required
-          className="h-12 rounded-lg bg-lightBrown px-2"
+          className="h-12 rounded-lg bg-newcolor px-2"
           value={name}
           onChange={handleName}
         />
@@ -53,7 +53,7 @@ const ContactForm = () => {
           name="from_email"
           placeholder="Your Email"
           required
-          className="h-12 rounded-lg bg-lightBrown px-2"
+          className="h-12 rounded-lg bg-newcolor px-2"
           value={email}
           onChange={handleEmail}
         />
@@ -64,13 +64,13 @@ const ContactForm = () => {
           cols="50"
           placeholder="Message"
           required
-          className=" rounded-lg bg-lightBrown p-2"
+          className=" rounded-lg bg-newcolor p-2"
           value={message}
           onChange={handleMessage}
         />
         <button
           type="submit"
-          className="w-full rounded-lg border border-cyan text-white h-12 font-bold text-xl hover:bg-darkCyan bg-cyan transition-all duration-500"
+          className="w-full rounded-lg border border-lightCyan text-white h-12 font-bold text-xl hover:bg-darkCyan bg-cyan transition-all duration-500"
         >
           Send
         </button>

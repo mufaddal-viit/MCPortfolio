@@ -1,6 +1,6 @@
 const ExperienceTopRight = () => {
   return (
-    <div className="xl:w-[25%] lg:w-[30%] border border-lightBrown p-4 rounded-xl">
+    <div className="xl:w-[25%] lg:w-[30%] border border-black p-4 rounded-xl shadow-xl">
       <p className="text-lg text-center text-lightGrey">
         During my tenure at <span className="font-bold text-white">PWC, </span>
         I created dynamic and responsive UI, leveraging best practices to create

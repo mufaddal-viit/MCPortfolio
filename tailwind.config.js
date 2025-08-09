@@ -27,7 +27,7 @@ export default {
        */
       brown: "#53423e",
       lightBrown: "#645550",
-      darkBrown: "#2c2523",
+      // darkBrown: "#2c2523",
       black: "#1e1917",
       white: "#f1e1d9",
       cyan: "#15d1e9",
@@ -39,6 +39,8 @@ export default {
       grey: "#626965",
       lightGrey: "#978580",
       darkGrey: "#3f4441",
+      darkBrown: "#6F4E37",
+      newcolor: "#E3DAC9",
     },
     extend: {
       boxShadow: {

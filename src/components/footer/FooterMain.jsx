@@ -23,8 +23,8 @@ const FooterMain = () => {
     <div className="px-4">
       <div className="w-full h-[1px] bg-lightGrey mt-24"></div>
       <div className="md:flex justify-between mt-4 max-w-[1200px] mx-auto sm:hidden">
-        <p className="text-3xl text-lightGrey ">Mufaddal Calcuttawala</p>
-        <ul className="flex gap-4 text-lightGrey text-xl">
+        <p className="text-3xl text-white mt-4 ">Mufaddal Calcuttawala</p>
+        <ul className="flex gap-4 text-white text-xl mt-4">
           {footerLinks.map((item, index) => {
             return (
               <li key={index}>
@@ -34,7 +34,7 @@ const FooterMain = () => {
                   duration={500}
                   offset={-120}
                   to={item.section}
-                  className="hover:text-white transition-all duration-500 cursor-pointer"
+                  className="hover:text-orange transition-all duration-500 cursor-pointer"
                 >
                   {item.name}
                 </Link>
@@ -43,7 +43,8 @@ const FooterMain = () => {
           })}
         </ul>
       </div>
-      <p className="max-w-[1200px] mx-auto text-right mt-2 mb-12 text-sm text-lightBrown">
+      
+      <p className=" text-center  mx-auto mt-20 mb-12 text-sm text-white">
         © 2025 Mufaddal | All Rights Reserved.
       </p>
     </div>

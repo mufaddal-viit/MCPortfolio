@@ -9,7 +9,7 @@ const HeroText = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0 }}
-        className="lg:text-2xl sm:text-xl  uppercase text-lightGrey "
+        className="lg:text-2xl sm:text-xl  uppercase "
       >
         Front-End Web Developer
       </motion.h2>
@@ -18,7 +18,7 @@ const HeroText = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0 }}
-        className="md:text-[2.8rem] lg:text-6xl sm:text-4xl text-orange font-bold uppercase"
+        className="md:text-[2.8rem] lg:text-6xl sm:text-4xl text-darkCyan font-bold uppercase"
       >
         Mufaddal <br className="sm:hidden md:block" />
         Calcuttawala
