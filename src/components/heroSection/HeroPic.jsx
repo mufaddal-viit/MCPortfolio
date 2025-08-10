@@ -12,8 +12,8 @@ const HeroPic = () => {
       className=" h-full flex items-center justify-center "
     >
       <img
-        // src="../../public/images/HexaPic.png" 
-        src= "public/images/IMG_9148.JPG"
+        // src="../../public/images/HexaPic.png"
+        src="/images/IMG_9148.JPG"
         alt="Mufaddal Calcuttawala"
         className="max-h-[350px] w-auto rounded-[99px]"
       />
