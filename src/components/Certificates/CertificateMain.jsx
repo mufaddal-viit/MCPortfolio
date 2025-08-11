@@ -21,7 +21,7 @@ export default function CertificateMain() {
           <div className="flex flex-col items-center text-center flex-1">
             <CertificateText certName="AWS Certified Developer" />
             <CertificateImage
-              // urlz="/images/aws_developer.png"
+              urlz="/images/aws_developer.png"
               name="Certified Developer"
             />
           </div>
@@ -30,7 +30,7 @@ export default function CertificateMain() {
           <div className="flex flex-col items-center text-center flex-1">
             <CertificateText certName="AWS Cloud Practitioner" />
             <CertificateImage
-              // urlz="/images/aws_cloudprac.png"
+              urlz="/images/aws_cloudprac.png"
               name="Cloud Practitioner"
             />
           </div>

@@ -1,5 +1,5 @@
 import AboutMeMain from "./components/aboutMeSection/AboutMeMain";
-import CertificateMain from "./components/Certificates/certificateMain";
+// import CertificateMain from "./components/Certificates/CertificateMain";
 import ContactMeMain from "./components/contactMeSection/ContactMeMain";
 import ExperienceMain from "./components/experienceSection/ExperienceMain";
 import FooterMain from "./components/footer/FooterMain";
@@ -9,6 +9,7 @@ import NavbarMain from "./components/navbar/NavbarMain";
 import ProjectsMain from "./components/projectsSection/ProjectsMain";
 import SkillsMain from "./components/skillsSection/SkillsMain";
 // import SubHeroMain from "./components/subHeroSection/SubHeroMain";
+import CertificateMain from "./components/Certificates/CertificateMain";
 
 function App() {
   return (
