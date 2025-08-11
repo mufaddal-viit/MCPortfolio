@@ -1,4 +1,5 @@
 import AboutMeMain from "./components/aboutMeSection/AboutMeMain";
+import CertificateMain from "./components/Certificates/certificateMain";
 import ContactMeMain from "./components/contactMeSection/ContactMeMain";
 import ExperienceMain from "./components/experienceSection/ExperienceMain";
 import FooterMain from "./components/footer/FooterMain";
@@ -21,6 +22,7 @@ function App() {
       <ExperienceMain />
       {/* <ProjectsMain /> */}
       <ContactMeMain />
+      <CertificateMain />
       <FooterMain />
     </main>
   );

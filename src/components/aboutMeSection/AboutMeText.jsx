@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 const AboutMeText = () => {
   return (
     <div className="flex flex-col md:items-start sm:items-center md:text-left sm:text-center">
-      <h2 className="text-6xl text-cyan mb-10">About Me</h2>
+      <h2 className="text-6xl text-cyan mb-10 font-bold">About Me</h2>
       <p>
         Hi, I’m Mufaddal Calcuttawala, a passionate Web Developer with over 3
         years of experience building responsive, user-centric web applications.
