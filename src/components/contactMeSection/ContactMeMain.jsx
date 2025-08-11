@@ -30,10 +30,10 @@ const ContactMeMain = () => {
       className="max-w-[1200px] mx-auto items-center justify-center mt-[100px] px-4 "
     >
       <motion.div
-        variants={fadeIn("up", 0)}
+        variants={fadeIn("up", 0.5)}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.5 }}
+        viewport={{ once: false, amount: 0 }}
       >
         <h2 className="text-6xl text-cyan mb-10 text-center font-bold">
           Contact Me
