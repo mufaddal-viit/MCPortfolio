@@ -5,18 +5,25 @@ import { fadeIn } from "../../framerMotion/variants";
 
 const projects = [
   {
-    name: "",
+    name: "Food App",
     year: "",
     align: "right",
-    image: "",
-    link: "#",
+    image: "/images/foodAPP.png",
+    link: "https://mufaddal-viit.github.io/FoodApp/",
   },
   {
-    name: "",
+    name: "Car Rental Management FrontEnd",
     year: "",
     align: "left",
     image: "",
     link: "#",
+  },
+  {
+    name: "Ecommerse Website",
+    year: "",
+    align: "right",
+    image: "/images/ecommerse.png",
+    link: "https://mufaddal-viit.github.io/eBazaar",
   },
 ];
 
@@ -40,6 +47,7 @@ const ProjectsMain = () => {
               year={project.year}
               align={project.align}
               image={project.image}
+              link={project.link}
             />
           );
         })}
