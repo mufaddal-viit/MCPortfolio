@@ -8,7 +8,7 @@ const projects = [
     name: "Food App",
     year: "",
     align: "right",
-    image: "/images/foodAPP.png",
+    image: "/images/foodapp2.png",
     link: "https://mufaddal-viit.github.io/FoodApp/",
   },
   {
