@@ -51,10 +51,10 @@ https://mufaddal-portfolio.netlify.app/
 
 ## 📫 Contact Me
 
-## Email: calcutta53mufaddal@gmail.com/ +971556024553
+# Email: calcutta53mufaddal@gmail.com/ +971556024553
 
-## LinkedIn: http://www.linkedin.com/in/mufaddal-calcuttawala
+# LinkedIn: http://www.linkedin.com/in/mufaddal-calcuttawala
 
-## GitHub: github.com/mufaddal-viit
+# GitHub: github.com/mufaddal-viit
 
-## ⭐ If you like my portfolio, consider giving it a star on GitHub!
+# ⭐ If you like my portfolio, consider giving it a star on GitHub!
