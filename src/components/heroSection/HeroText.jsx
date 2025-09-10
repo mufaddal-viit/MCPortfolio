@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { fadeIn } from "../../framerMotion/variants";
+import { ReactTyped } from "react-typed";
 
 const HeroText = () => {
   return (
@@ -11,7 +12,12 @@ const HeroText = () => {
         viewport={{ once: false, amount: 0 }}
         className="lg:text-2xl sm:text-xl  uppercase "
       >
-        Front-End Web Developer
+        <ReactTyped
+          strings={["Full Stack Developer"]}
+          typeSpeed={100}
+          loop
+          backSpeed={20}
+        />
       </motion.h2>
       <motion.h1
         variants={fadeIn("right", 0.4)}
@@ -30,7 +36,7 @@ const HeroText = () => {
         viewport={{ once: false, amount: 0 }}
         className="text-lg mt-4"
       >
-        A Passionate Web Developer <br /> with 3 years of experience.
+        A Passionate Developer <br /> with 5 years of experience.
       </motion.p>
     </div>
   );

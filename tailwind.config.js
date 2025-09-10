@@ -10,24 +10,9 @@ export default {
       "2xl": "1536px",
     },
     colors: {
-      /* brown: "#53423e",
-      lightBrown: "#645550",
-      darkBrown: "#2d2421",
-      black: "#1e1917",
-      white: "#f1e1d9",
-      cyan: "#5fcfdd",
-      lightCyan: "#88e5f0",
-      darkCyan: "#009fb3",
-      orange: "#f0a94f",
-      lightOrange: "#fac27b",
-      darkOrange: "#d28422",
-      grey: "#626965",
-      lightGrey: "#8a938e",
-      darkGrey: "#3f4441",
-       */
+      // Existing palette
       brown: "#53423e",
       lightBrown: "#645550",
-      // darkBrown: "#2c2523",
       black: "#1e1917",
       white: "#f1e1d9",
       cyan: "#15d1e9",
@@ -41,6 +26,19 @@ export default {
       darkGrey: "#3f4441",
       darkBrown: "#6F4E37",
       newcolor: "#E3DAC9",
+
+      // 🆕 Official brand colors
+      html: "#E44D26",
+      css: "#1572B6",
+      javascript: "#F7DF1E",
+      react: "#61DAFB",
+      redux: "#764ABC",
+      tailwind: "#38BDF8",
+      nodejs: "#339933",
+      express: "#000000",
+      github: "#181717",
+      mysql: "#00758F",
+      mongodb: "#47A248",
     },
     extend: {
       boxShadow: {

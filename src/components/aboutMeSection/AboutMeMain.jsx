@@ -16,14 +16,14 @@ const AboutMeMain = () => {
       >
         <AboutMeText />
       </motion.div>
-      <motion.div
+      {/* <motion.div
         variants={fadeIn("left", 0)}
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0.3 }}
       >
-        <AboutMeImage />
-      </motion.div>
+         <AboutMeImage />
+      </motion.div> */}
     </div>
   );
 };

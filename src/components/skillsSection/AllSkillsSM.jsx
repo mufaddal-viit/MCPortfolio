@@ -1,15 +1,11 @@
-import { FaHtml5 } from "react-icons/fa";
+import { FaHtml5, FaNode } from "react-icons/fa";
 import { FaCss3Alt } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io";
-import { SiTypescript } from "react-icons/si";
 import { FaReact } from "react-icons/fa";
 import { SiRedux } from "react-icons/si";
-import { SiNextdotjs } from "react-icons/si";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../framerMotion/variants";
-
-import { FaJava } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaDatabase } from "react-icons/fa";
 
@@ -17,45 +13,59 @@ const skills = [
   {
     skill: "HTML",
     icon: FaHtml5,
+    color: "html",
   },
   {
     skill: "CSS",
     icon: FaCss3Alt,
+    color: "css",
   },
   {
     skill: "JavaScript",
     icon: IoLogoJavascript,
+    color: "javascript",
   },
   {
     skill: "ReactJS",
     icon: FaReact,
+    color: "react",
   },
   {
     skill: "Redux",
     icon: SiRedux,
+    color: "redux",
   },
   {
     skill: "TailwindCSS",
     icon: RiTailwindCssFill,
+    color: "tailwind",
   },
   {
-    skill: "Java",
-    icon: FaJava,
+    skill: "Node js",
+    icon: FaNode,
+    color: "nodejs",
   },
   {
-    skill: "Java Spring Boot",
-    icon: FaJava,
+    skill: "Express js",
+    icon: FaNode, // Use custom SVG if available
+    color: "express",
   },
   {
     skill: "Github",
     icon: FaGithub,
+    color: "github",
   },
   {
     skill: "MySQL",
     icon: FaDatabase,
+    color: "mysql",
+  },
+  {
+    skill: "MongoDB",
+    icon: FaDatabase,
+    color: "mysql",
   },
 ];
-
 const AllSkillsSM = () => {
   return (
     <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12 my-12">

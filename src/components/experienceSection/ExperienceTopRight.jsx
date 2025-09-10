@@ -13,7 +13,9 @@ const ExperienceTopRight = () => {
       </p>
       <p className="text-lg text-center text-lightGrey">
         Also developed REST APIs using{" "}
-        <span className="font-bold text-white">Java Spring boot and MySQL</span>{" "}
+        <span className="font-bold text-white">
+          Node js Express and Mongodb
+        </span>{" "}
         with authentications implemented.
       </p>
     </div>
