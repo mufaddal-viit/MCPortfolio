@@ -22,8 +22,20 @@ import ContactMeLeft from "./ContactMeLeft";
 import ContactMeRight from "./ContactMeRight";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../framerMotion/variants";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
+import { useState } from "react";
 
 const ContactMeMain = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const showTooltip = () => {
+    setIsOpen(true);
+    // Hide after 2 seconds (2000 ms)
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 4000);
+  };
   return (
     <div
       id="contact"
@@ -39,7 +51,12 @@ const ContactMeMain = () => {
           Contact Me
         </h2>
         <div className="flex justify-between gap-24 bg-brown p-8 rounded-2xl lg:flex-row sm:flex-col">
-          <ContactMeLeft />
+          <div id="tooltip" onMouseEnter={showTooltip}>
+            <ContactMeLeft />
+          </div>
+          <Tooltip anchorSelect="#tooltip" place="top" isOpen={isOpen}>
+            The form uses EmailJS for sending emails.
+          </Tooltip>
           <ContactMeRight />
         </div>
       </motion.div>

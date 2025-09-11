@@ -6,38 +6,49 @@ const ContactForm = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState("");
-  const handleName = (e) => {
-    setName(e.target.value);
-  };
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const handleMessage = (e) => {
-    setMessage(e.target.value);
-  };
+  const [isSending, setIsSending] = useState(false); // 🆕
+  const [isSent, setIsSent] = useState(false); // 🆕
+
+  const handleName = (e) => setName(e.target.value);
+  const handleEmail = (e) => setEmail(e.target.value);
+  const handleMessage = (e) => setMessage(e.target.value);
+
   const form = useRef();
+
   const sendEmail = (e) => {
     e.preventDefault();
+
+    // Prevent multiple clicks
+    if (isSending || isSent) return;
+
+    setIsSending(true);
+
     emailjs
-      .sendForm("service_ko3hmpt", "template_ahbmmqd", form.current, {
-        publicKey: "I6HAT5mUZH7WHabGE",
+      .sendForm("service_d5oi96k", "template_7ppk0aj", form.current, {
+        publicKey: "CWAR7RiVBR9-GHxNF",
       })
       .then(
         () => {
           setEmail("");
           setName("");
           setMessage("");
-          setSuccess("Message Sent Succesfully");
+          setSuccess("Message Sent Successfully ✅");
+          setIsSent(true); // Email sent
+          setIsSending(false); // Stop loading
         },
         (error) => {
           console.log("FAILED...", error.text);
+          alert("Failed to send message. Try again.");
+          setIsSending(false); // Reset on failure
         }
       );
   };
 
   return (
     <div>
-      <p className="text-cyan">{success}</p>
+      {success && <p className="text-cyan text-center mb-4">{success}</p>}
+      {/* <Tooltip text="Hover me" tooltip="This is a tooltip!" /> */}
+
       <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-4">
         <input
           type="text"
@@ -58,21 +69,30 @@ const ContactForm = () => {
           onChange={handleEmail}
         />
         <textarea
-          type="text"
           name="message"
           rows="9"
           cols="50"
           placeholder="Message"
           required
-          className=" rounded-lg bg-newcolor p-2 text-brown text-lg"
+          className="rounded-lg bg-newcolor p-2 text-brown text-lg"
           value={message}
           onChange={handleMessage}
         />
+
+        {/* ✅ Updated Button */}
         <button
           type="submit"
-          className="w-full rounded-lg border border-lightCyan text-white h-12 font-bold text-xl hover:bg-darkCyan bg-cyan transition-all duration-500"
+          disabled={isSending || isSent}
+          className={`w-full rounded-lg border border-lightCyan text-white h-12 font-bold text-xl transition-all duration-500
+            ${
+              isSent
+                ? "bg-green-600 cursor-not-allowed"
+                : isSending
+                ? "bg-grey cursor-wait"
+                : "hover:bg-darkCyan bg-cyan"
+            }`}
         >
-          Send
+          {isSent ? "SENT ✅" : isSending ? "Sending..." : "SEND"}
         </button>
       </form>
     </div>
