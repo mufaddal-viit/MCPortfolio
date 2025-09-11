@@ -98,12 +98,12 @@ const skills = [
     color: "tailwind",
   },
   {
-    skill: "Node js",
+    skill: "Node Js",
     icon: FaNode,
     color: "nodejs",
   },
   {
-    skill: "Express js",
+    skill: "Express Js",
     icon: FaNode, // Use custom SVG if available
     color: "express",
   },

@@ -1,6 +1,6 @@
 const ExperienceTopMiddle = () => {
   return (
-    <div className="lg:w-[35%] md:w-[50%] sm:w-[80%]">
+    <div className="lg:w-[23%] md:w-[40%] sm:w-[40%] p-1 animate-pulse">
       <img src="../../public/images/experience-image.png" alt="my experience" />
     </div>
   );

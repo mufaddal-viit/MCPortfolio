@@ -60,6 +60,7 @@ const ContactMeMain = () => {
           <ContactMeRight />
         </div>
       </motion.div>
+      <div className="w-full h-1 mt-14 bg-newcolor lg:block sm:hidden"></div>
     </div>
   );
 };

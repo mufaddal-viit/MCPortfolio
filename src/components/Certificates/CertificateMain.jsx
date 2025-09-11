@@ -5,7 +5,7 @@ import CertificateImage from "./CertificateImage";
 
 export default function CertificateMain() {
   return (
-    <div id="certificate" className="max-w-6xl mx-auto px-4 py-20">
+    <div id="certificate" className="max-w-6xl mx-auto px-4 py-20 mt-10">
       <motion.div
         variants={fadeIn("up", 0)}
         initial="hidden"

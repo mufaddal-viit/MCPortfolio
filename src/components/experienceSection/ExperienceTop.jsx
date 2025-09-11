@@ -6,7 +6,7 @@ const ExperienceTop = () => {
   return (
     <div className="flex lg:flex-row sm:flex-col  items-center justify-evenly">
       <ExperienceTopLeft />
-      {/* <ExperienceTopMiddle /> */}
+      <ExperienceTopMiddle />
       <ExperienceTopRight />
     </div>
   );
