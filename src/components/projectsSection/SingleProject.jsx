@@ -14,7 +14,9 @@ const SingleProject = ({ name, year, align, image, link }) => {
       } justify-end sm:flex-col`}
     >
       <div>
-        <h2 className="md:text-5xl sm:text-3xl text-orange ">{name}</h2>
+        <h2 className="md:text-5xl sm:text-3xl text-orange font-extrabold ">
+          {name}
+        </h2>
         {/* <h2
           className={`text-xl font-thin text-white font-special sm:text-center ${
             align === "left" ? "md:text-right" : "md:text-left"
@@ -25,7 +27,7 @@ const SingleProject = ({ name, year, align, image, link }) => {
         <a
           href={link}
           target="_blank"
-          className={`text-lg flex gap-2 items-center text-cyan hover:text-orange transition-all duration-500 cursor-pointer sm:justify-self-center ${
+          className={`text-2xl flex gap-2 items-center text-cyan hover:text-orange transition-all duration-500 cursor-pointer sm:justify-self-center ${
             align === "left" ? "md:justify-self-end" : "md:justify-self-start"
           }`}
         >

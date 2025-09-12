@@ -8,22 +8,29 @@ const projects = [
     name: "Food App",
     year: "",
     align: "right",
-    image: "/images/foodapp2.png",
+    image: "/images/MFKitchen.png",
     link: "https://mufaddal-viit.github.io/FoodApp/",
   },
   {
     name: "Car Rental Management FrontEnd",
     year: "",
     align: "left",
-    image: "",
-    link: "#",
+    image: "/images/carrental.png",
+    link: "https://github.com/mufaddal-viit/Car-Autorent",
   },
   {
     name: "Ecommerse Website",
     year: "",
     align: "right",
-    image: "/images/ecommerse.png",
+    image: "/images/MFEbazaar.png",
     link: "https://mufaddal-viit.github.io/eBazaar",
+  },
+  {
+    name: "Ball Race game",
+    year: "",
+    align: "left",
+    image: "/images/ballrace.png",
+    link: "https://ball-race.netlify.app/",
   },
 ];
 
