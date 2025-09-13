@@ -29,6 +29,18 @@ const HeroText = () => {
         Mufaddal <br className="sm:hidden md:block" />
         Calcuttawala
       </motion.h1>
+      <motion.h1
+        variants={fadeIn("down", 1.4)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0 }}
+        className="text-white font-bold uppercase text-center 
+             sm:text-3xl md:text-3xl lg:text-4xl tracking-widest
+              leading-relaxed font-arabic-display"
+      >
+        مفضل كلكتا
+      </motion.h1>
+
       <motion.p
         variants={fadeIn("up", 0.6)}
         initial="hidden"

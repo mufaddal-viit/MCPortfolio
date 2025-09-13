@@ -50,8 +50,8 @@ export default {
       },
     },
     fontFamily: {
-      body: ["Josefin Sans"],
-      special: ['"Nunito"'],
+      "arabic-display": ["Reem Kufi", "sans-serif"],
+      // you can add more here
     },
   },
   plugins: [],
