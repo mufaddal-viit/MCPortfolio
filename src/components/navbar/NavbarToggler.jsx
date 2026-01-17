@@ -10,8 +10,9 @@ const NavbarToggler = () => {
   };
   return (
     <button
-      className="text-2xl p-3 border border-orange rounded-full"
+      className="text-2xl p-3 border border-orange/60 rounded-full text-white hover:border-orange hover:bg-orange/10 transition-colors"
       onClick={setToggleMenu}
+      aria-label="Toggle menu"
     >
       <GiHamburgerMenu />
     </button>

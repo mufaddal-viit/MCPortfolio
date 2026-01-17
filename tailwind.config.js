@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: ["class"],
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
@@ -39,6 +40,20 @@ export default {
       github: "#181717",
       mysql: "#00758F",
       mongodb: "#47A248",
+
+      background: "rgb(var(--color-background) / <alpha-value>)",
+      foreground: "rgb(var(--color-foreground) / <alpha-value>)",
+      surface: "rgb(var(--color-surface) / <alpha-value>)",
+      "surface-2": "rgb(var(--color-surface-2) / <alpha-value>)",
+      border: "rgb(var(--color-border) / <alpha-value>)",
+      muted: "rgb(var(--color-muted) / <alpha-value>)",
+      primary: "rgb(var(--color-primary) / <alpha-value>)",
+      "primary-foreground":
+        "rgb(var(--color-primary-foreground) / <alpha-value>)",
+      accent: "rgb(var(--color-accent) / <alpha-value>)",
+      "accent-foreground":
+        "rgb(var(--color-accent-foreground) / <alpha-value>)",
+      ring: "rgb(var(--color-ring) / <alpha-value>)",
     },
     extend: {
       boxShadow: {

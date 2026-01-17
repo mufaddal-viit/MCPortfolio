@@ -1,21 +1,31 @@
-const NavbarLogo = () => {
+import NavbarSocial from "./NavbarSocial"
+
+const NavbarLogo = ({ onHomeSelect }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    if (onHomeSelect) onHomeSelect();
   };
+
   return (
-    <div>
-      <h1
-        className="text-white  text-2xl sm:hidden md:block hover:text-cyan cursor-pointer"
+    <div className="flex flex-col">
+      {/* Name / Logo */}
+      <button
         onClick={scrollToTop}
+        aria-label="Scroll to top"
+        className="group text-left leading-tight"
       >
-        Mufaddal Calcuttawala
-      </h1>
-      <h1
-        className="text-white font-special font-extrabold text-4xl md:hidden sm:block hover:text-cyan cursor-pointer"
-        onClick={scrollToTop}
-      >
-        MC
-      </h1>
+        {/* Full Name */}
+        <span className="hidden md:block text-white text-xl md:text-2xl font-semibold tracking-wide transition-colors duration-300 group-hover:text-cyan">
+          Mufaddal Calcuttawala
+        </span>
+
+        {/* Mobile Logo */}
+        <span className="block md:hidden text-white font-special font-extrabold text-3xl transition-colors duration-300 group-hover:text-cyan">
+          MC
+        </span>
+      </button>
+
+      <NavbarSocial className="hidden lg:flex pt-2 ml-4" />
     </div>
   );
 };
