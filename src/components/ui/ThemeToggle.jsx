@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
+import { Sun, Moon } from "lucide-react";
 
 const STORAGE_KEY = "theme";
 
-const getInitialTheme = () => {
-  if (typeof window === "undefined") return "dark";
-  const stored = window.localStorage.getItem(STORAGE_KEY);
-  if (stored === "light" || stored === "dark") return stored;
-  return document.documentElement.classList.contains("dark") ? "dark" : "light";
-};
+const getInitialTheme = () => "dark";
 
-export default function ThemeToggle() {
+export default function ThemeToggle({
+  className = "",
+  fixed = true,
+  showLabel = fixed,
+}) {
   const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
@@ -23,6 +23,7 @@ export default function ThemeToggle() {
   }, [theme]);
 
   const nextTheme = theme === "dark" ? "light" : "dark";
+  const label = theme === "dark" ? "Light mode" : "Dark mode";
 
   return (
     <button
@@ -31,9 +32,11 @@ export default function ThemeToggle() {
       aria-pressed={theme === "dark"}
       title={`Switch to ${nextTheme} mode`}
       onClick={() => setTheme(nextTheme)}
-      className="fixed bottom-6 right-6 z-50 rounded-full border border-brown/40 bg-newcolor/90 px-4 py-2 text-sm font-semibold text-brown shadow-lg shadow-black/20 transition hover:scale-[1.03] hover:bg-orange/20 dark:border-orange/60 dark:bg-brown/80 dark:text-white"
+      disabled
+      className={`${fixed ? "fixed bottom-6 right-6 z-50 px-4 py-2 text-sm font-semibold" : "size-11"} inline-flex items-center justify-center gap-2 rounded-full border border-brown/40 bg-transparent text-brown shadow-lg shadow-black/20 transition hover:scale-[1.03] dark:border-orange/60  hover:dark:bg-transparent dark:text-white ${className} hover:cursor-not-allowed`}
     >
-      {theme === "dark" ? "Light mode" : "Dark mode"}
+      {showLabel && <span>{label}</span>}
+      {theme === "dark" ? <Moon className="size-4" /> : <Sun className="size-4" />}
     </button>
   );
 }

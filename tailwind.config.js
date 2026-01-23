@@ -37,17 +37,12 @@ export default {
   		github: '#181717',
   		mysql: '#00758F',
   		mongodb: '#47A248',
-  		background: 'rgb(var(--color-background) / <alpha-value>)',
-  		foreground: 'rgb(var(--color-foreground) / <alpha-value>)',
-  		surface: 'rgb(var(--color-surface) / <alpha-value>)',
-  		'surface-2': 'rgb(var(--color-surface-2) / <alpha-value>)',
-  		border: 'rgb(var(--color-border) / <alpha-value>)',
-  		muted: 'rgb(var(--color-muted) / <alpha-value>)',
-  		primary: 'rgb(var(--color-primary) / <alpha-value>)',
-  		'primary-foreground': 'rgb(var(--color-primary-foreground) / <alpha-value>)',
-  		accent: 'rgb(var(--color-accent) / <alpha-value>)',
-  		'accent-foreground': 'rgb(var(--color-accent-foreground) / <alpha-value>)',
-  		ring: 'rgb(var(--color-ring) / <alpha-value>)'
+  		background: '#F8FAB4',
+  		foreground: '#222831',
+  		'background-dark': '#222831',
+  		'foreground-dark': '#DFD0B8',
+  		accent: '#FFC7A7',
+  		'accent-dark': '#948979'
   	},
   	extend: {
   		boxShadow: {
@@ -58,51 +53,9 @@ export default {
   			orangeMediumShadow: '10px 10px 2000px 150px rgba(240, 169, 79, 0.5)'
   		},
   		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		},
-  		colors: {
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
-  			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
-  			},
-  			popover: {
-  				DEFAULT: 'hsl(var(--popover))',
-  				foreground: 'hsl(var(--popover-foreground))'
-  			},
-  			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
-  			},
-  			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
-  			},
-  			muted: {
-  				DEFAULT: 'hsl(var(--muted))',
-  				foreground: 'hsl(var(--muted-foreground))'
-  			},
-  			accent: {
-  				DEFAULT: 'hsl(var(--accent))',
-  				foreground: 'hsl(var(--accent-foreground))'
-  			},
-  			destructive: {
-  				DEFAULT: 'hsl(var(--destructive))',
-  				foreground: 'hsl(var(--destructive-foreground))'
-  			},
-  			border: 'hsl(var(--border))',
-  			input: 'hsl(var(--input))',
-  			ring: 'hsl(var(--ring))',
-  			chart: {
-  				'1': 'hsl(var(--chart-1))',
-  				'2': 'hsl(var(--chart-2))',
-  				'3': 'hsl(var(--chart-3))',
-  				'4': 'hsl(var(--chart-4))',
-  				'5': 'hsl(var(--chart-5))'
-  			}
+  			lg: '0.5rem',
+  			md: '0.375rem',
+  			sm: '0.25rem'
   		}
   	},
   	fontFamily: {
