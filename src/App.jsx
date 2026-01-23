@@ -8,6 +8,8 @@ import HeroMain from "./components/heroSection/HeroMain";
 import NavbarMain from "./components/navbar/NavbarMain";
 import ProjectsMain from "./components/projectsSection/ProjectsMain";
 import SkillsMain from "./components/skillsSection/SkillsMain";
+import ThemeToggle from "./components/ui/ThemeToggle";
+import { DockDemo } from "./components/dock";
 // import SubHeroMain from "./components/subHeroSection/SubHeroMain";
 import CertificateMain from "./components/Certificates/CertificateMain";
 function App() {
@@ -24,6 +26,8 @@ function App() {
       <CertificateMain />
       <ContactMeMain />
       <FooterMain />
+      {/* <ThemeToggle /> */}
+      <DockDemo />
     </main>
   );
 }
