@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { animateScroll, scroller } from "react-scroll";
 import SparkleUnderlineNav from "../Underline";
 
@@ -12,7 +13,11 @@ const links = [
   { label: "Resume", section: "Resume" },
 ];
 
+const SCROLL_OFFSET = 130;
+
 const NavbarLinks = ({ togglestate, activeSection, onNavigate }) => {
+  const rafRef = useRef(0);
+
   const handleSelect = (item) => {
     if (!item || typeof item === "string") return;
     if (item.section === "Resume") {
@@ -32,12 +37,61 @@ const NavbarLinks = ({ togglestate, activeSection, onNavigate }) => {
       scroller.scrollTo(item.section, {
         smooth: true,
         duration: 500,
-        offset: -130,
+        offset: -SCROLL_OFFSET,
       });
     }
     if (onNavigate && item.section) onNavigate(item.section);
     if (togglestate) togglestate();
   };
+
+  useEffect(() => {
+    if (!onNavigate) return;
+
+    const sections = links
+      .map((link) => link.section)
+      .filter((section) => section && section !== "home")
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (sections.length === 0) return;
+
+    const getActiveSection = () => {
+      let current = "home";
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top - SCROLL_OFFSET <= 0) {
+          current = section.id;
+        }
+      }
+      return current;
+    };
+
+    const updateActive = () => {
+      rafRef.current = 0;
+      const nextSection = getActiveSection();
+      if (nextSection && nextSection !== activeSection) {
+        onNavigate(nextSection);
+      }
+    };
+
+    const onScroll = () => {
+      if (rafRef.current) return;
+      rafRef.current = window.requestAnimationFrame(updateActive);
+    };
+
+    updateActive();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (rafRef.current) {
+        window.cancelAnimationFrame(rafRef.current);
+        rafRef.current = 0;
+      }
+    };
+  }, [activeSection, onNavigate]);
 
   return (
     <SparkleUnderlineNav
