@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 export default function SparkleUnderlineNav({
@@ -9,15 +9,18 @@ export default function SparkleUnderlineNav({
   listClassName = "flex gap-8",
   activeKey,
 }) {
-  const getItemKey = (item, index) => {
+  const getItemKey = useCallback((item, index) => {
     if (typeof item === "string") return item;
     return item.section || item.label || `item-${index}`;
-  };
+  }, []);
 
-  const resolveIndex = (key) => {
-    if (!key) return -1;
-    return items.findIndex((item, index) => getItemKey(item, index) === key);
-  };
+  const resolveIndex = useCallback(
+    (key) => {
+      if (!key) return -1;
+      return items.findIndex((item, index) => getItemKey(item, index) === key);
+    },
+    [items, getItemKey],
+  );
 
   const [activeIndex, setActiveIndex] = useState(() => {
     const index = resolveIndex(activeKey);
@@ -27,9 +30,13 @@ export default function SparkleUnderlineNav({
   const navRef = useRef(null);
   const activeRef = useRef(null);
   const btnRefs = useRef([]);
+  const isAnimatingRef = useRef(false);
+  const requestedIndexRef = useRef(null);
+  const initialRenderRef = useRef(true);
 
-  const createSVG = (el) => {
-    el.innerHTML = `
+  const createSVG = useCallback(
+    (el) => {
+      el.innerHTML = `
       <svg viewBox="0 0 116 5" preserveAspectRatio="none" class="beam">
         <path d="M0.5 2.5L113 0.534929C114.099 0.515738 115 1.40113 115 2.5C115 3.59887 114.099 4.48426 113 4.46507L0.5 2.5Z" fill="url(#gradient-beam)"/>
         <defs>
@@ -55,10 +62,12 @@ export default function SparkleUnderlineNav({
           </g>
         </svg>
       </div>
-    `;
-  };
+      `;
+    },
+    [color],
+  );
 
-  const getOffsetLeft = (btn) => {
+  const getOffsetLeft = useCallback((btn) => {
     const nav = navRef.current;
     const active = activeRef.current;
     if (!nav || !active) return 0;
@@ -68,79 +77,123 @@ export default function SparkleUnderlineNav({
     const w = active.offsetWidth;
 
     return b.left - n.left + (b.width - w) / 2;
-  };
+  }, []);
 
-  useLayoutEffect(() => {
-    const btn = btnRefs.current[activeIndex];
+  const syncToIndex = useCallback((index) => {
+    const btn = btnRefs.current[index];
     if (!btn || !activeRef.current) return;
 
     gsap.set(activeRef.current, { x: getOffsetLeft(btn) });
     gsap.to(activeRef.current, { "--show": 1, duration: 0.15 });
-  }, [activeIndex]);
+  }, [getOffsetLeft]);
+
+  const animateToIndex = useCallback(
+    (i) => {
+      const nav = navRef.current;
+      const active = activeRef.current;
+      const oldBtn = btnRefs.current[activeIndex];
+      const newBtn = btnRefs.current[i];
+      if (!nav || !active || !newBtn) return;
+
+      if (i === activeIndex && !isAnimatingRef.current) {
+        syncToIndex(i);
+        return;
+      }
+
+      if (isAnimatingRef.current) {
+        gsap.killTweensOf(active);
+        nav.classList.remove("before", "after");
+        active.innerHTML = "";
+      }
+
+      const newX = getOffsetLeft(newBtn);
+      const currentX = Number(gsap.getProperty(active, "x"));
+      const fallbackX = oldBtn ? getOffsetLeft(oldBtn) : newX;
+      const startX = Number.isFinite(currentX) ? currentX : fallbackX;
+      const dir = newX >= startX ? "after" : "before";
+      const spacing = Math.abs(newX - startX);
+
+      isAnimatingRef.current = true;
+      requestedIndexRef.current = i;
+      nav.classList.add(dir);
+      gsap.set(active, { rotateY: dir === "before" ? "180deg" : "0deg", x: startX });
+
+      gsap.to(active, {
+        keyframes: [
+          {
+            "--width": `${Math.min(spacing, Math.max(nav.offsetWidth - 60, 0))}px`,
+            duration: 0.28,
+            ease: "none",
+            onStart: () => {
+              createSVG(active);
+              gsap.to(active, { "--opacity": 1, duration: 0.08 });
+            },
+          },
+          {
+            "--scaleX": "0",
+            "--scaleY": ".25",
+            "--width": "0px",
+            duration: 0.28,
+            ease: "none",
+            onStart: () => {
+              gsap.to(active, { "--mask": "40%", duration: 0.45 });
+              gsap.to(active, { "--opacity": 0, delay: 0.35, duration: 0.2 });
+            },
+            onComplete: () => {
+              active.innerHTML = "";
+              nav.classList.remove("before", "after");
+              gsap.set(active, {
+                x: newX,
+                "--show": "1",
+                "--scaleX": "1",
+                "--scaleY": "1",
+                "--mask": "0%",
+              });
+              isAnimatingRef.current = false;
+              if (requestedIndexRef.current === i) {
+                requestedIndexRef.current = null;
+              }
+              setActiveIndex(i);
+            },
+          },
+        ],
+      });
+
+      gsap.to(active, {
+        x: newX,
+        "--strikeX": "-50%",
+        duration: 0.56,
+        ease: "none",
+      });
+    },
+    [activeIndex, createSVG, getOffsetLeft, syncToIndex],
+  );
+
+  useLayoutEffect(() => {
+    if (initialRenderRef.current) {
+      syncToIndex(activeIndex);
+      initialRenderRef.current = false;
+      return;
+    }
+
+    if (!isAnimatingRef.current) {
+      syncToIndex(activeIndex);
+    }
+  }, [activeIndex, syncToIndex]);
 
   useEffect(() => {
     const nextIndex = resolveIndex(activeKey);
-    if (nextIndex >= 0 && nextIndex !== activeIndex) {
-      setActiveIndex(nextIndex);
-    }
-  }, [activeKey, items, activeIndex]);
+    if (nextIndex < 0 || nextIndex === activeIndex) return;
+    if (isAnimatingRef.current && requestedIndexRef.current === nextIndex) return;
+    animateToIndex(nextIndex);
+  }, [activeKey, activeIndex, animateToIndex, resolveIndex]);
 
   const onClick = (i, item) => {
-    const nav = navRef.current;
-    const active = activeRef.current;
-    const oldBtn = btnRefs.current[activeIndex];
-    const newBtn = btnRefs.current[i];
     if (i === activeIndex) {
       if (onSelect) onSelect(item, i);
       return;
     }
-    if (!nav || !active || !oldBtn || !newBtn) return;
-
-    const newX = getOffsetLeft(newBtn);
-    const oldX = getOffsetLeft(oldBtn);
-    const dir = i > activeIndex ? "after" : "before";
-    const spacing = Math.abs(newX - oldX);
-
-    nav.classList.add(dir);
-    gsap.set(active, { rotateY: dir === "before" ? "180deg" : "0deg" });
-
-    gsap.to(active, {
-      keyframes: [
-        {
-          "--width": `${Math.min(spacing, nav.offsetWidth - 60)}px`,
-          duration: 0.28,
-          ease: "none",
-          onStart: () => {
-            createSVG(active);
-            gsap.to(active, { "--opacity": 1, duration: 0.08 });
-          },
-        },
-        {
-          "--scaleX": "0",
-          "--scaleY": ".25",
-          "--width": "0px",
-          duration: 0.28,
-          ease: "none",
-          onStart: () => {
-            gsap.to(active, { "--mask": "40%", duration: 0.45 });
-            gsap.to(active, { "--opacity": 0, delay: 0.35, duration: 0.2 });
-          },
-          onComplete: () => {
-            active.innerHTML = "";
-            nav.classList.remove("before", "after");
-            gsap.set(active, { x: newX, "--show": "1", "--scaleX": "1", "--scaleY": "1", "--mask": "0%" });
-            setActiveIndex(i);
-          },
-        },
-      ],
-    });
-
-    gsap.to(active, {
-      x: newX,
-      "--strikeX": "-50%",
-      duration: 0.56,
-      ease: "none",
-    });
+    animateToIndex(i);
 
     if (onSelect) onSelect(item, i);
   };
