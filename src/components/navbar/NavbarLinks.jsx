@@ -1,18 +1,31 @@
 import { animateScroll, scroller } from "react-scroll";
 import SparkleUnderlineNav from "../Underline";
 
+const RESUME_URL = "/MUFADDAL_cal_FS_5_Jan.pdf";
+
 const links = [
   { label: "Home", section: "home" },
   { label: "About Me", section: "about" },
   { label: "Skills", section: "skills" },
   { label: "Experience", section: "experience" },
   { label: "Projects", section: "projects" },
-  { label: "Contact", section: "contact" },
+  { label: "Resume", section: "Resume" },
 ];
 
 const NavbarLinks = ({ togglestate, activeSection, onNavigate }) => {
   const handleSelect = (item) => {
     if (!item || typeof item === "string") return;
+    if (item.section === "Resume") {
+      const link = document.createElement("a");
+      link.href = RESUME_URL;
+      link.download = "MUFADDAL_cal_FS.pdf";
+      link.rel = "noopener";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      if (togglestate) togglestate();
+      return;
+    }
     if (item.section === "home") {
       animateScroll.scrollToTop({ duration: 500, smooth: true });
     } else {
