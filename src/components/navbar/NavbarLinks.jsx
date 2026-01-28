@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { animateScroll, scroller } from "react-scroll";
 import SparkleUnderlineNav from "../Underline";
 
-const RESUME_URL = "/MUFADDAL_cal_FS_5_Jan.pdf";
+const RESUME_URL = "/MUFADDAL_cal_FS_5YOE.pdf";
 
 const links = [
   { label: "Home", section: "home" },
