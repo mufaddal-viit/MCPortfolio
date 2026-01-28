@@ -1,165 +1,151 @@
-import SingleSkill from "./SingleSkill";
-import { FaHtml5, FaNode } from "react-icons/fa";
-import { FaCss3Alt } from "react-icons/fa";
-import { IoLogoJavascript } from "react-icons/io";
-import { SiTypescript } from "react-icons/si";
-import { FaReact } from "react-icons/fa";
-import { SiRedux } from "react-icons/si";
-import { SiNextdotjs } from "react-icons/si";
-import { RiTailwindCssFill } from "react-icons/ri";
 import { motion } from "framer-motion";
+import SingleSkill from "./SingleSkill";
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaReact,
+  FaNode,
+  FaGithub,
+  FaDatabase,
+} from "react-icons/fa";
+import { IoLogoJavascript } from "react-icons/io5";
+import { SiRedux, SiTypescript as IoLogoTypescript } from "react-icons/si";
+import { RiTailwindCssFill } from "react-icons/ri";
 import { fadeIn } from "../../framerMotion/variants";
-import { FaGithub } from "react-icons/fa";
-import { FaDatabase } from "react-icons/fa";
-// import mongo from "/images//icons8-mongodb-50.svg";
-// const skills = [
-//   {
-//     skill: "HTML",
-//     icon: FaHtml5,
-//     color: "#E44D26", // HTML orange
-//   },
-//   {
-//     skill: "CSS",
-//     icon: FaCss3Alt,
-//     color: "#1572B6", // CSS blue
-//   },
-//   {
-//     skill: "JavaScript",
-//     icon: IoLogoJavascript,
-//     color: "#F7DF1E", // JS yellow
-//   },
-//   {
-//     skill: "ReactJS",
-//     icon: FaReact,
-//     color: "#61DAFB", // React cyan/blue
-//   },
-//   {
-//     skill: "Redux",
-//     icon: SiRedux,
-//     color: "#764ABC", // Redux purple
-//   },
-//   {
-//     skill: "TailwindCSS",
-//     icon: RiTailwindCssFill,
-//     color: "#38BDF8", // Tailwind blue
-//   },
-//   {
-//     skill: "Node js",
-//     icon: FaNode,
-//     color: "#339933", // Node green
-//   },
-//   {
-//     skill: "Express js",
-//     icon: FaNode, // Ideally you'd use a separate Express icon or SVG
-//     color: "#000000", // Express is usually shown in black/monochrome
-//   },
-//   {
-//     skill: "Github",
-//     icon: FaGithub,
-//     color: "#181717", // GitHub black
-//   },
-//   {
-//     skill: "MySQL",
-//     icon: FaDatabase,
-//     color: "#00758F", // MySQL blue
-//   },
 
-// ];
+const container = {
+  hidden: {
+    opacity: 0,
+    scale: 0.95,
+  },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      staggerChildren: 0.25,
+      delayChildren: 0.2,
+      ease: "easeOut",
+    },
+  },
+};
 
-const skills = [
-  {
-    skill: "HTML",
-    icon: FaHtml5,
-    color: "html",
-  },
-  {
-    skill: "CSS",
-    icon: FaCss3Alt,
-    color: "css",
-  },
-  {
-    skill: "JavaScript",
-    icon: IoLogoJavascript,
-    color: "javascript",
-  },
-  {
-    skill: "ReactJS",
-    icon: FaReact,
-    color: "react",
-  },
-  {
-    skill: "Redux",
-    icon: SiRedux,
-    color: "redux",
-  },
-  {
-    skill: "TailwindCSS",
-    icon: RiTailwindCssFill,
-    color: "tailwind",
-  },
-  {
-    skill: "Node Js",
-    icon: FaNode,
-    color: "nodejs",
-  },
-  {
-    skill: "Express Js",
-    icon: FaNode, // Use custom SVG if available
-    color: "express",
-  },
-  {
-    skill: "Github",
-    icon: FaGithub,
-    color: "github",
-  },
-  {
-    skill: "MySQL",
-    icon: FaDatabase,
-    color: "mysql",
-  },
-];
 
 const AllSkills = () => {
+  const skills = [
+    { skill: "HTML", icon: FaHtml5, color: "html" },
+    { skill: "CSS", icon: FaCss3Alt, color: "css" },
+    { skill: "JavaScript", icon: IoLogoJavascript, color: "javascript" },
+    { skill: "Typescript", icon: IoLogoTypescript, color: "typescript" },
+    { skill: "ReactJS", icon: FaReact, color: "react" },
+    { skill: "Redux", icon: SiRedux, color: "redux" },
+    { skill: "TailwindCSS", icon: RiTailwindCssFill, color: "tailwind" },
+    { skill: "Node Js", icon: FaNode, color: "nodejs" },
+    { skill: "Express Js", icon: FaNode, color: "express" }, // consider custom SVG later
+    { skill: "Github", icon: FaGithub, color: "github" },
+    { skill: "MySQL", icon: FaDatabase, color: "mysql" },
+  ];
+
   return (
-    <div>
-      <div className="flex items-center justify-center relative gap-2 max-w-[1200px] mx-auto">
-        {skills.map((item, index) => {
-          return (
-            <motion.div
-              variants={fadeIn("up", `0.${index}`)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: false, amount: 0 }}
-              key={index}
-            >
-              <SingleSkill
-                key={index}
-                text={item.skill}
-                imgSvg={<item.icon />}
-                color={item.color}
-              />
-            </motion.div>
-          );
-        })}
+    <div className="relative py-16 md:py-20 lg:py-24">
+      {/* ────────────────────────────────────────────────
+          MOBILE + TABLET (below lg)
+      ──────────────────────────────────────────────── */}
+      <motion.div
+        className="
+          grid grid-cols-2 gap-6 px-5
+          sm:grid-cols-3 sm:gap-8
+          md:grid-cols-4 md:gap-10 md:px-8
+          lg:hidden place-items-center
+        "
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.5 }}
+      >
+        {skills.map((item, index) => (
+          <motion.div
+            key={item.skill}
+            variants={fadeIn("up", 0.1 * index)}
+            className="w-full max-w-[140px] sm:max-w-[160px]"
+          >
+            <SingleSkill
+              text={item.skill}
+              imgSvg={
+                <item.icon className="text-5xl sm:text-6xl" />
+              }
+              color={item.color}
+            />
+          </motion.div>
+        ))}
+
+        {/* MongoDB */}
         <motion.div
-          variants={fadeIn("up", `0.${9}`)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0 }}
-          // key={index}
+          variants={fadeIn("up", 0.1 * skills.length)}
+          className="w-full max-w-[140px] sm:max-w-[160px]"
         >
           <SingleSkill
             imgSvg={
               <img
-                src="/images//icons8-mongodb-50.svg"
+                src="/images/icons8-mongodb-50.svg"
                 alt="MongoDB"
-                className="w-12 h-12"
+                className="w-14 h-14 sm:w-16 sm:h-16"
               />
             }
             text="MongoDB"
+            color="mongodb"
           />
         </motion.div>
-      </div>
+      </motion.div>
+
+      {/* ────────────────────────────────────────────────
+          DESKTOP (lg+)
+      ──────────────────────────────────────────────── */}
+      <motion.div 
+        className="
+          hidden lg:grid lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7
+          gap-8 xl:gap-10 2xl:gap-12
+          max-w-7xl mx-auto px-6
+          place-items-center
+        "
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.5 }}
+      >
+        {skills.map((item, index) => (
+          <motion.div
+            key={item.skill}
+            variants={fadeIn("up", 0.08 * index)}
+            className="w-full max-w-[180px]"
+          >
+            <SingleSkill
+              text={item.skill}
+              imgSvg={
+                <item.icon className="text-6xl xl:text-7xl" />
+              }
+              color={item.color}
+            />
+          </motion.div>
+        ))}
+
+        {/* MongoDB */}
+        <motion.div
+          variants={fadeIn("up", 0.08 * skills.length)}
+          className="w-full max-w-[180px]"
+        >
+          <SingleSkill
+            imgSvg={
+              <img
+                src="/images/icons8-mongodb-50.svg"
+                alt="MongoDB"
+                className="w-16 h-16 xl:w-20 xl:h-20"
+              />
+            }
+            text="MongoDB"
+            color="mongodb"
+          />
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

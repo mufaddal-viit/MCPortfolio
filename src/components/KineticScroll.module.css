@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
+.section {
+  position: relative;
+  font-family: "Geist", system-ui, sans-serif;
+
+  /* hue ramp */
+  --ks-step: calc(var(--ks-end-hue, 360) / var(--ks-count, 1));
+}
+
+/* Scoped background (optional) */
+.section[data-bg="on"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image: radial-gradient(
+    var(--ks-dot-color) var(--ks-dot-size),
+    transparent var(--ks-dot-size)
+  );
+  background-size: var(--ks-dot-spacing) var(--ks-dot-spacing);
+  background-position: top left;
+  background-repeat: repeat;
+
+  opacity: 1;
+}
+
+.section[data-bg="on"][data-bg-mode="fixed"]::before {
+  position: fixed; /* ONLY if you explicitly want it */
+}
+
+.section[data-bg="on"][data-mask="on"]::before {
+  mask-image: radial-gradient(circle at top left, #000 0%, transparent 75%);
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}
+
+/* The important part: contained scrolling + contained snap */
+.scroller {
+  position: relative;
+  z-index: 1;
+
+  height: 100vh;
+  overflow-y: auto;
+
+  scroll-snap-type: y var(--ks-scroll-snap-type, proximity);
+  scroll-behavior: var(--ks-scroll-behavior, smooth);
+
+  /* optional: better feel */
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--ks-max-width, 1024px);
+  padding: 0 var(--ks-container-padding, 16px);
+  margin: 0 auto;
+}
+
+.hero {
+  min-height: 100vh; /* relative to scroller viewport */
+  display: flex;
+  align-items: center;
+}
+
+.heroText {
+  margin: 0;
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 800;
+}
+
+.heroDescription {
+  font-size: clamp(1rem, 3vw, 2rem);
+  font-weight: 400;
+  margin-top: 16px;
+}
+
+.listContainer {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 48px;
+}
+
+.listText {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  font-weight: 600;
+
+  position: sticky;
+  top: calc(50% - 0.5lh);
+  align-self: flex-start;
+  min-width: max-content;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  font-weight: 600;
+}
+
+.listItem {
+  line-height: 1.25;
+  scroll-snap-align: center;
+}
+
+/* Color ramp */
+.listItem:not(:last-of-type) {
+  color: oklch(65% 0.3 calc(var(--ks-i) * var(--ks-step)));
+}
+
+/* Progressive enhancement: view-timeline highlight */
+@supports (animation-timeline: scroll()) and (animation-range: 0% 100%) {
+  .listItem:first-of-type {
+    --ks-start-opacity: 1;
+  }
+
+  .listItem:last-of-type {
+    --ks-end-opacity: 1;
+  }
+
+  .listItem {
+    opacity: 0.2;
+    animation-name: ksBrighten;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+
+    animation-timeline: view();
+    animation-range: cover calc(50% - 1lh) calc(50% + 1lh);
+  }
+
+  @keyframes ksBrighten {
+    0% {
+      opacity: var(--ks-start-opacity, 0.2);
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: var(--ks-end-opacity, 0.2);
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .listContainer {
+    column-gap: 12px;
+  }
+}

@@ -1,28 +1,20 @@
 import AllSkills from "./AllSkills";
 import AllSkillsSM from "./AllSkillsSM";
 import SkillsText from "./SkillsText";
-import { motion } from "framer-motion";
-import { fadeIn } from "../../framerMotion/variants";
-
+import { KineticScroll } from "../KineticScroll";
 const SkillsMain = () => {
   return (
     <div id="skills">
+      {/* <KineticScroll /> */}
       <div className="max-w-[1200px]  mx-auto min-h-[500px] relative overflow-hidden">
-        <motion.div
-          variants={fadeIn("down", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.7 }}
-        >
+          {/* My skills */}
           <SkillsText />
-        </motion.div>
-        <div className="bottom-[100px] absolute left-[50%] -translate-x-[50%] sm:hidden lg:block">
+          {/* skills on bigger screens */}
           <AllSkills />
-        </div>
-        <div className="sm:block lg:hidden">
-          <AllSkillsSM />
-        </div>
+          {/* skills on smaller screens */}
+          {/* <AllSkillsSM /> */}
       </div>
+      
     </div>
   );
 };

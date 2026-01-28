@@ -29,6 +29,7 @@ export default {
   		html: '#E44D26',
   		css: '#1572B6',
   		javascript: '#F7DF1E',
+  		typescript: '#3178C6',
   		react: '#61DAFB',
   		redux: '#764ABC',
   		tailwind: '#38BDF8',
