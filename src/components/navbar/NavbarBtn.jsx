@@ -8,7 +8,7 @@ const NavbarBtn = () => {
         Hire Me
       </Link>
       <div className="sm:hidden md:block">
-        <LuArrowDownRight className="group-hover:animate-[spin_1.5s_linear_infinite] transition-transform" />
+        <LuArrowDownRight className="animate-[spin_1.5s_linear_infinite] transition-transform" />
       </div>
     </button>
   );
