@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { scroller } from "react-scroll";
 import AboutMeMain from "./components/aboutMeSection/AboutMeMain";
 // import CertificateMain from "./components/Certificates/CertificateMain";
 import ContactMeMain from "./components/contactMeSection/ContactMeMain";
@@ -21,10 +23,59 @@ const normalizePath = (path) => {
   return trimmedPath || "/";
 };
 
+const SCROLL_OFFSET = 130;
+const HOME_PATH = "/";
+
 function App() {
   const currentPath = normalizePath(
     typeof window !== "undefined" ? window.location.pathname : "/",
   );
+
+  useEffect(() => {
+    if (currentPath !== HOME_PATH) return;
+    if (typeof window === "undefined") return;
+
+    const scrollFromHash = () => {
+      const rawHash = window.location.hash || "";
+      const section = rawHash.replace(/^#/, "").trim();
+      if (!section) return;
+
+      if (section === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+
+      let tries = 0;
+      const maxTries = 8;
+      const intervalMs = 60;
+
+      const attemptScroll = () => {
+        const target = document.getElementById(section);
+        if (target) {
+          scroller.scrollTo(section, {
+            smooth: true,
+            duration: 500,
+            offset: -SCROLL_OFFSET,
+          });
+          return true;
+        }
+        return false;
+      };
+
+      if (attemptScroll()) return;
+
+      const timerId = window.setInterval(() => {
+        tries += 1;
+        if (attemptScroll() || tries >= maxTries) {
+          window.clearInterval(timerId);
+        }
+      }, intervalMs);
+    };
+
+    scrollFromHash();
+    window.addEventListener("hashchange", scrollFromHash);
+    return () => window.removeEventListener("hashchange", scrollFromHash);
+  }, [currentPath]);
 
   if (currentPath === "/blogs") {
     return (

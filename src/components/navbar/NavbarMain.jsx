@@ -8,10 +8,28 @@ import { toggleMenu } from "../../state/menuSlice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
+const HOME_PATH = "/";
+const NAV_SECTIONS = new Set(["home", "about", "skills", "experience", "projects"]);
+
+const normalizePath = (path) => {
+  if (!path) return HOME_PATH;
+  const trimmedPath = path.replace(/\/+$/, "");
+  return trimmedPath || HOME_PATH;
+};
+
+const getInitialSection = () => {
+  if (typeof window === "undefined") return "home";
+  if (normalizePath(window.location.pathname) !== HOME_PATH) return "home";
+
+  const hashSection = (window.location.hash || "").replace(/^#/, "").trim();
+  if (NAV_SECTIONS.has(hashSection)) return hashSection;
+  return "home";
+};
+
 const NavbarMain = () => {
   const menuOpen = useSelector((state) => state.menu.menuOpen);
   const dispatch = useDispatch();
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState(getInitialSection);
   // console.log(menuOpen);
   const togglestate = () => {
     dispatch(toggleMenu());
