@@ -5,9 +5,9 @@ const AboutMeText = () => {
     <div className="flex flex-col md:items-start sm:items-center md:text-left sm:text-center">
       <h2 className="text-6xl text-cyan mb-10 font-bold">About Me</h2>
       <p>
-        Hi, I’m Mufaddal Calcuttawala, a passionate Web Developer with over 5
+        Hi, I’m Mufaddal Calcuttawala, a passionate Web Developer with over 4
         years of experience crafting responsive, user-focused web applications.
-        I specialize in JavaScript, React.js, Node.js, Express, and MongoDB,
+        I specialize in Typescript, React.js, Node.js, Express, Nest.js and MongoDB,
         with a strong foundation in building full-stack applications that are
         scalable, secure, and performant.
         <br />
@@ -23,11 +23,11 @@ const AboutMeText = () => {
         etc.). I’m well-versed in automating deployments, ensuring smooth
         release cycles, and maintaining application uptime and reliability.
         <br />
-        Now based in Dubai, I’m actively seeking exciting opportunities where I
+        {/* Now based in Dubai, I’m actively seeking exciting opportunities where I
         can contribute to building modern, intuitive, and high-performance web
         applications. I’m also committed to continuous learning, always staying
         up-to-date with the latest tools, trends, and best practices in web
-        development.
+        development. */}
       </p>
       <button className="border border-orange rounded-full py-2 px-4 text-lg flex gap-2 items-center mt-10 hover:bg-orange transition-all duration-500 cursor-pointer md:self-start sm:self-center">
         <Link

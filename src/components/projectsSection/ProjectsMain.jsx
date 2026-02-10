@@ -5,14 +5,21 @@ import { fadeIn } from "../../framerMotion/variants";
 
 const projects = [
   {
-    name: "Food App",
+    name: "Food Ordering App",
+    year: "",
+    align: "left",
+    image: "/images/MFKitchen.png", 
+    link: "https://cafe-menu-ya1n.onrender.com/cafe-central",
+  },
+  {
+    name: "Recipe Finder",
     year: "",
     align: "right",
-    image: "/images/MFKitchen.png",
+    image: "/images/RecipeFinder.png",
     link: "https://mufaddal-viit.github.io/FoodApp/",
   },
   {
-    name: "Car Rental Management FrontEnd",
+    name: "Car Rental Management",
     year: "",
     align: "left",
     image: "/images/carrental.png",
