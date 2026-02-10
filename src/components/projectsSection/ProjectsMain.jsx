@@ -8,7 +8,7 @@ const projects = [
     name: "Food Ordering App",
     year: "",
     align: "left",
-    image: "/images/MFKitchen.png", 
+    image: "/images/FoodOrder.png", 
     link: "https://cafe-menu-ya1n.onrender.com/cafe-central",
   },
   {

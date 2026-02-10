@@ -10,9 +10,28 @@ import ProjectsMain from "./components/projectsSection/ProjectsMain";
 import SkillsMain from "./components/skillsSection/SkillsMain";
 import ThemeToggle from "./components/ui/ThemeToggle";
 import { DockDemo } from "./components/dock";
+import Blogs from "./components/Blogs/blogs.jsx";
+
 // import SubHeroMain from "./components/subHeroSection/SubHeroMain";
 import CertificateMain from "./components/Certificates/CertificateMain";
+
+const normalizePath = (path) => {
+  if (!path) return "/";
+  const trimmedPath = path.replace(/\/+$/, "");
+  return trimmedPath || "/";
+};
+
 function App() {
+  const currentPath = normalizePath(
+    typeof window !== "undefined" ? window.location.pathname : "/",
+  );
+
+  if (currentPath === "/blogs") {
+    return (
+      <Blogs />
+    );
+  }
+
   return (
     <main className="font-body text-white relative overflow-hidden">
       <NavbarMain />
