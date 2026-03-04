@@ -1,5 +1,9 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const ContactForm = () => {
   const [name, setName] = useState("");
@@ -18,14 +22,21 @@ const ContactForm = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      alert(
+        "Email service is not configured. Add VITE_EMAILJS_* values in your .env file.",
+      );
+      return;
+    }
+
     // Prevent multiple clicks
     if (isSending || isSent) return;
 
     setIsSending(true);
 
     emailjs
-      .sendForm("service_d5oi96k", "template_7ppk0aj", form.current, {
-        publicKey: "CWAR7RiVBR9-GHxNF",
+      .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form.current, {
+        publicKey: EMAILJS_PUBLIC_KEY,
       })
       .then(
         () => {

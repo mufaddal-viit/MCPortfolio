@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { animateScroll, scroller } from "react-scroll";
+import { useLocation, useNavigate } from "react-router-dom";
 import SparkleUnderlineNav from "../Underline";
 
 const RESUME_URL = "/MUFADDAL_cal_FS_4YOE.pdf";
@@ -16,20 +17,10 @@ const links = [
 const SCROLL_OFFSET = 130;
 const HOME_PATH = "/";
 
-const normalizePath = (path) => {
-  if (!path) return HOME_PATH;
-  const trimmedPath = path.replace(/\/+$/, "");
-  return trimmedPath || HOME_PATH;
-};
-
-const goToHomeSection = (section) => {
-  if (typeof window === "undefined") return;
-  const destination = section === "home" ? HOME_PATH : `${HOME_PATH}#${section}`;
-  window.location.assign(destination);
-};
-
 const NavbarLinks = ({ togglestate, activeSection, onNavigate }) => {
   const rafRef = useRef(0);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleSelect = (item) => {
     if (!item || typeof item === "string") return;
@@ -44,18 +35,16 @@ const NavbarLinks = ({ togglestate, activeSection, onNavigate }) => {
       if (togglestate) togglestate();
       return;
     }
-    const currentPath =
-      typeof window !== "undefined"
-        ? normalizePath(window.location.pathname)
-        : HOME_PATH;
+
+    const currentPath = location.pathname || HOME_PATH;
     const nextSection = item.section;
 
     // If we are on a non-home route (e.g. /blogs), first route back to home
-    // and then use hash so App can scroll to the target section.
+    // and pass the target section in route state so Home can scroll.
     if (currentPath !== HOME_PATH) {
       if (onNavigate && nextSection) onNavigate(nextSection);
       if (togglestate) togglestate();
-      goToHomeSection(nextSection);
+      navigate(HOME_PATH, { state: { scrollTo: nextSection || "home" } });
       return;
     }
 
@@ -74,8 +63,7 @@ const NavbarLinks = ({ togglestate, activeSection, onNavigate }) => {
 
   useEffect(() => {
     if (!onNavigate) return;
-    if (typeof window === "undefined") return;
-    if (normalizePath(window.location.pathname) !== HOME_PATH) return;
+    if (location.pathname !== HOME_PATH) return;
 
     const sections = links
       .map((link) => link.section)
@@ -121,7 +109,7 @@ const NavbarLinks = ({ togglestate, activeSection, onNavigate }) => {
         rafRef.current = 0;
       }
     };
-  }, [activeSection, onNavigate]);
+  }, [activeSection, location.pathname, onNavigate]);
 
   return (
     <SparkleUnderlineNav

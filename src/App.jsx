@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { scroller } from "react-scroll";
+import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import AboutMeMain from "./components/aboutMeSection/AboutMeMain";
-// import CertificateMain from "./components/Certificates/CertificateMain";
 import ContactMeMain from "./components/contactMeSection/ContactMeMain";
 import ExperienceMain from "./components/experienceSection/ExperienceMain";
 import FooterMain from "./components/footer/FooterMain";
@@ -10,85 +10,68 @@ import HeroMain from "./components/heroSection/HeroMain";
 import NavbarMain from "./components/navbar/NavbarMain";
 import ProjectsMain from "./components/projectsSection/ProjectsMain";
 import SkillsMain from "./components/skillsSection/SkillsMain";
-import ThemeToggle from "./components/ui/ThemeToggle";
 import { DockDemo } from "./components/dock";
 import Blogs from "./components/Blogs/blogs.jsx";
-
-// import SubHeroMain from "./components/subHeroSection/SubHeroMain";
 import CertificateMain from "./components/Certificates/CertificateMain";
 
-const normalizePath = (path) => {
-  if (!path) return "/";
-  const trimmedPath = path.replace(/\/+$/, "");
-  return trimmedPath || "/";
-};
-
 const SCROLL_OFFSET = 130;
-const HOME_PATH = "/";
+const ROUTE_SCROLL_MAX_TRIES = 8;
+const ROUTE_SCROLL_INTERVAL_MS = 60;
 
-function App() {
-  const currentPath = normalizePath(
-    typeof window !== "undefined" ? window.location.pathname : "/",
-  );
+function HomePage() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const routeSection = location.state?.scrollTo;
 
   useEffect(() => {
-    if (currentPath !== HOME_PATH) return;
-    if (typeof window === "undefined") return;
+    const section = typeof routeSection === "string" ? routeSection.trim() : "";
+    if (!section) return;
 
-    const scrollFromHash = () => {
-      const rawHash = window.location.hash || "";
-      const section = rawHash.replace(/^#/, "").trim();
-      if (!section) return;
-
-      if (section === "home") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        return;
-      }
-
-      let tries = 0;
-      const maxTries = 8;
-      const intervalMs = 60;
-
-      const attemptScroll = () => {
-        const target = document.getElementById(section);
-        if (target) {
-          scroller.scrollTo(section, {
-            smooth: true,
-            duration: 500,
-            offset: -SCROLL_OFFSET,
-          });
-          return true;
-        }
-        return false;
-      };
-
-      if (attemptScroll()) return;
-
-      const timerId = window.setInterval(() => {
-        tries += 1;
-        if (attemptScroll() || tries >= maxTries) {
-          window.clearInterval(timerId);
-        }
-      }, intervalMs);
+    const clearNavigationState = () => {
+      navigate(location.pathname, { replace: true, state: null });
     };
 
-    scrollFromHash();
-    window.addEventListener("hashchange", scrollFromHash);
-    return () => window.removeEventListener("hashchange", scrollFromHash);
-  }, [currentPath]);
+    if (section === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      clearNavigationState();
+      return;
+    }
 
-  if (currentPath === "/blogs") {
-    return (
-      <Blogs />
-    );
-  }
+    let tries = 0;
+
+    const attemptScroll = () => {
+      const target = document.getElementById(section);
+      if (!target) return false;
+
+      scroller.scrollTo(section, {
+        smooth: true,
+        duration: 500,
+        offset: -SCROLL_OFFSET,
+      });
+      return true;
+    };
+
+    if (attemptScroll()) {
+      clearNavigationState();
+      return;
+    }
+
+    const timerId = window.setInterval(() => {
+      tries += 1;
+      if (attemptScroll() || tries >= ROUTE_SCROLL_MAX_TRIES) {
+        window.clearInterval(timerId);
+        clearNavigationState();
+      }
+    }, ROUTE_SCROLL_INTERVAL_MS);
+
+    return () => window.clearInterval(timerId);
+  }, [location.pathname, navigate, routeSection]);
 
   return (
     <main className="font-body text-white relative overflow-hidden">
       <NavbarMain />
       <HeroMain />
       <HeroGradient />
-      {/* <SubHeroMain /> */}
       <AboutMeMain />
       <SkillsMain />
       <ExperienceMain />
@@ -96,9 +79,18 @@ function App() {
       <CertificateMain />
       <ContactMeMain />
       <FooterMain />
-      {/* <ThemeToggle /> */}
       <DockDemo />
     </main>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/blogs" element={<Blogs />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
 

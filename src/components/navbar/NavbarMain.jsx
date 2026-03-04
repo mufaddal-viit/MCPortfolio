@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 const HOME_PATH = "/";
-const NAV_SECTIONS = new Set(["home", "about", "skills", "experience", "projects"]);
 
 const normalizePath = (path) => {
   if (!path) return HOME_PATH;
@@ -20,9 +19,6 @@ const normalizePath = (path) => {
 const getInitialSection = () => {
   if (typeof window === "undefined") return "home";
   if (normalizePath(window.location.pathname) !== HOME_PATH) return "home";
-
-  const hashSection = (window.location.hash || "").replace(/^#/, "").trim();
-  if (NAV_SECTIONS.has(hashSection)) return hashSection;
   return "home";
 };
 

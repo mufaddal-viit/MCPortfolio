@@ -1,7 +1,16 @@
-import NavbarSocial from "./NavbarSocial"
+import { useLocation, useNavigate } from "react-router-dom";
 
 const NavbarLogo = ({ onHomeSelect }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const scrollToTop = () => {
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: "home" } });
+      if (onHomeSelect) onHomeSelect();
+      return;
+    }
+
     window.scrollTo({ top: 0, behavior: "smooth" });
     if (onHomeSelect) onHomeSelect();
   };

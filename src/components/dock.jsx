@@ -1,4 +1,5 @@
-import { CalendarIcon, HomeIcon, MailIcon, PencilIcon } from "lucide-react"
+import { HomeIcon, PencilIcon } from "lucide-react"
+import { Link, useLocation } from "react-router-dom"
 
 import { Dock, DockIcon } from "@/components/ui/dock"
 import ThemeToggle from "@/components/ui/ThemeToggle"
@@ -6,8 +7,6 @@ import ThemeToggle from "@/components/ui/ThemeToggle"
 // export type IconProps = React.HTMLAttributes<SVGElement>
 
 const Icons = {
-  calendar: (props) => <CalendarIcon {...props} />,
-  email: (props) => <MailIcon {...props} />,
   linkedin: (props) => (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
       <title>LinkedIn</title>
@@ -51,7 +50,7 @@ const Icons = {
 
 const DATA = {
   navbar: [
-    { href: "/", icon: HomeIcon, label: "Home" },
+    { href: "/", icon: HomeIcon, label: "Home", state: { scrollTo: "home" } },
     { href: "/blogs", icon: PencilIcon, label: "Blog" },
   ],
   contact: {
@@ -81,6 +80,15 @@ const DATA = {
 }
 
 export function DockDemo() {
+  const location = useLocation();
+
+  const handleInternalNav = (event, href) => {
+    if (href === "/" && location.pathname === "/") {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="fixed left-1/2 bottom-6 z-50 -translate-x-1/2">
       <Dock
@@ -89,23 +97,27 @@ export function DockDemo() {
       >
         {DATA.navbar.map((item) => (
           <DockIcon key={item.label}>
-            <a
-            
-              href={item.href}
+            <Link
+              to={item.href}
+              state={item.state}
+              onClick={(event) => handleInternalNav(event, item.href)}
               aria-label={item.label}
               title={item.label}
               className="grid size-12 place-items-center rounded-full text-black transition-colors hover:bg-cyan/20 dark:text-white"
             >
               <item.icon className="size-4" />
-            </a>
+            </Link>
           </DockIcon>
         ))}
         <div className="h-8 w-px bg-black/30 dark:bg-white/15" />
-        {Object.entries(DATA.contact.social).map(([name, social]) => (
+        {Object.entries(DATA.contact.social)
+          .filter(([, social]) => Boolean(social.url))
+          .map(([name, social]) => (
           <DockIcon key={name}>
             <a
             target="_blank"
               href={social.url}
+              rel="noopener noreferrer"
               aria-label={social.name}
               title={name}
               className="grid size-12 place-items-center rounded-full text-black transition-colors hover:bg-cyan/20 dark:text-white"

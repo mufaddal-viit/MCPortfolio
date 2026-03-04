@@ -10,7 +10,7 @@ const ExperienceTopLeft = () => {
         <ExperienceInfo number="PWC" text="India" />
       </div>
       <p className="text-center ">
-        With 5 years of experience building dynamic and user-friendly complete
+        With 4 years of experience building dynamic and user-friendly complete
         web applications.
       </p>
       {/* <ExperienceInfo number="$100k" text="Max Budget" /> */}
