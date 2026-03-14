@@ -38,7 +38,14 @@ function ExperienceCenter({ image }) {
 
   return (
     <div className="mx-auto w-full max-w-[140px] p-1 animate-pulse sm:max-w-[170px] lg:max-w-[220px]">
-      <img src={image.src} alt={image.alt || "experience"} />
+      <img
+        src={image.src}
+        alt={image.alt || "experience"}
+        loading="lazy"
+        decoding="async"
+        width="220"
+        height="220"
+      />
     </div>
   );
 }

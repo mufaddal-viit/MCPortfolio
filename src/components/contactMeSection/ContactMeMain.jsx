@@ -20,22 +20,13 @@
 
 import ContactMeLeft from "./ContactMeLeft";
 import ContactMeRight from "./ContactMeRight";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../framerMotion/variants";
-import { Tooltip } from "react-tooltip";
-import "react-tooltip/dist/react-tooltip.css";
-import { useState } from "react";
 
 const ContactMeMain = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
 
-  const showTooltip = () => {
-    setIsOpen(true);
-    // Hide after 2 seconds (2000 ms)
-    setTimeout(() => {
-      setIsOpen(false);
-    }, 4000);
-  };
   return (
     <div
       id="contact"
@@ -51,12 +42,20 @@ const ContactMeMain = () => {
           Contact Me
         </h2>
         <div className="flex justify-between gap-24 bg-brown p-8 rounded-2xl lg:flex-row sm:flex-col">
-          <div id="tooltip" onMouseEnter={showTooltip}>
+          <div
+            className="relative"
+            onMouseEnter={() => setIsTooltipOpen(true)}
+            onMouseLeave={() => setIsTooltipOpen(false)}
+            onFocus={() => setIsTooltipOpen(true)}
+            onBlur={() => setIsTooltipOpen(false)}
+          >
             <ContactMeLeft />
+            {isTooltipOpen ? (
+              <div className="pointer-events-none absolute left-1/2 top-0 z-10 w-max max-w-[260px] -translate-x-1/2 -translate-y-[calc(100%+12px)] rounded-lg bg-black/85 px-3 py-2 text-sm text-white shadow-lg shadow-black/30">
+                The form uses EmailJS for sending emails.
+              </div>
+            ) : null}
           </div>
-          <Tooltip anchorSelect="#tooltip" place="top" isOpen={isOpen}>
-            The form uses EmailJS for sending emails.
-          </Tooltip>
           <ContactMeRight />
         </div>
       </motion.div>

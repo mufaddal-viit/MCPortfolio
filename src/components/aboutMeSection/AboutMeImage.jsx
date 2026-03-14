@@ -5,6 +5,10 @@ const AboutMeImage = () => {
         <img
           src="/images/about-me.jpg"
           alt="About Me Image"
+          loading="lazy"
+          decoding="async"
+          width="300"
+          height="500"
           className="h-full w-auto object-cover"
         />
       </div>

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { scroller } from "react-scroll";
 import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import AboutMeMain from "./components/aboutMeSection/AboutMeMain";
@@ -12,12 +12,12 @@ import NavbarMain from "./components/navbar/NavbarMain";
 import ProjectsMain from "./components/projectsSection/ProjectsMain";
 import SkillsMain from "./components/skillsSection/SkillsMain";
 import { DockDemo } from "./components/dock";
-import Blogs from "./components/Blogs/blogs.jsx";
 import CertificateMain from "./components/Certificates/CertificateMain";
 
 const SCROLL_OFFSET = 130;
 const ROUTE_SCROLL_MAX_TRIES = 8;
 const ROUTE_SCROLL_INTERVAL_MS = 60;
+const Blogs = lazy(() => import("./components/Blogs/blogs.jsx"));
 
 function HomePage() {
   const location = useLocation();
@@ -91,7 +91,14 @@ function App() {
       <CursorEffect />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/blogs" element={<Blogs />} />
+        <Route
+          path="/blogs"
+          element={
+            <Suspense fallback={null}>
+              <Blogs />
+            </Suspense>
+          }
+        />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>

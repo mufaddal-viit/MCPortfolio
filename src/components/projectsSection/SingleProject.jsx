@@ -38,7 +38,11 @@ const SingleProject = ({ name, year, align, image, link }) => {
       <div className="w-[210px] h-[210px] rounded-xl overflow-hidden hover:scale-110 transform transition-all duration-500 relative border border-white">
         <img
           src={image}
-          alt="website image"
+          alt={`${name} preview`}
+          loading="lazy"
+          decoding="async"
+          width="210"
+          height="210"
           className="w-full h-full object-cover"
         />
       </div>
