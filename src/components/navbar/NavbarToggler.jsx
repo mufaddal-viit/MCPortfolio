@@ -1,18 +1,13 @@
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useDispatch } from "react-redux";
-import { toggleMenu } from "../../state/menuSlice";
 
-const NavbarToggler = () => {
-  const dispatch = useDispatch();
-
-  const setToggleMenu = () => {
-    dispatch(toggleMenu());
-  };
+const NavbarToggler = ({ isOpen, onToggle }) => {
   return (
     <button
       className="text-2xl p-3 border border-orange/60 rounded-full text-white hover:border-orange hover:bg-orange/10 transition-colors"
-      onClick={setToggleMenu}
+      onClick={onToggle}
       aria-label="Toggle menu"
+      aria-expanded={isOpen}
+      aria-controls="mobile-navigation"
     >
       <GiHamburgerMenu />
     </button>

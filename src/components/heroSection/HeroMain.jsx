@@ -29,8 +29,8 @@ const HeroMain = () => {
     <div className="mt-20 pt-40 pb-16 relative overflow-hidden">
       <Particles
         className={`absolute inset-0 z-0 ${isDarkTheme ? "opacity-70" : "opacity-60"}`}
-        quantity={90}
-        size={3}
+        quantity={150}
+        size={1}
         color={isDarkTheme ? "#DFD0B8" : "#222831"}
       />
 

@@ -17,7 +17,7 @@ const links = [
 const SCROLL_OFFSET = 130;
 const HOME_PATH = "/";
 
-const NavbarLinks = ({ togglestate, activeSection, onNavigate }) => {
+const NavbarLinks = ({ activeSection, onItemSelect, onNavigate }) => {
   const rafRef = useRef(0);
   const location = useLocation();
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const NavbarLinks = ({ togglestate, activeSection, onNavigate }) => {
       document.body.appendChild(link);
       link.click();
       link.remove();
-      if (togglestate) togglestate();
+      if (onItemSelect) onItemSelect();
       return;
     }
 
@@ -43,7 +43,7 @@ const NavbarLinks = ({ togglestate, activeSection, onNavigate }) => {
     // and pass the target section in route state so Home can scroll.
     if (currentPath !== HOME_PATH) {
       if (onNavigate && nextSection) onNavigate(nextSection);
-      if (togglestate) togglestate();
+      if (onItemSelect) onItemSelect();
       navigate(HOME_PATH, { state: { scrollTo: nextSection || "home" } });
       return;
     }
@@ -58,7 +58,7 @@ const NavbarLinks = ({ togglestate, activeSection, onNavigate }) => {
       });
     }
     if (onNavigate && item.section) onNavigate(item.section);
-    if (togglestate) togglestate();
+    if (onItemSelect) onItemSelect();
   };
 
   useEffect(() => {
