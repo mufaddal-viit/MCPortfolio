@@ -4,9 +4,9 @@ import NavbarBtn from "./NavbarBtn";
 import NavbarToggler from "./NavbarToggler";
 // import NavbarSocial from "./NavbarSocial";
 import { useSelector } from "react-redux";
-import { toggleMenu } from "../../state/menuSlice";
+import { closeMenu, toggleMenu } from "../../state/menuSlice";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const HOME_PATH = "/";
 
@@ -26,10 +26,40 @@ const NavbarMain = () => {
   const menuOpen = useSelector((state) => state.menu.menuOpen);
   const dispatch = useDispatch();
   const [activeSection, setActiveSection] = useState(getInitialSection);
+  const mobileMenuRef = useRef(null);
+  const togglerRef = useRef(null);
   // console.log(menuOpen);
   const togglestate = () => {
     dispatch(toggleMenu());
   };
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handlePointerDown = (event) => {
+      const target = event.target;
+
+      if (mobileMenuRef.current?.contains(target)) return;
+      if (togglerRef.current?.contains(target)) return;
+
+      dispatch(closeMenu());
+    };
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        dispatch(closeMenu());
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [dispatch, menuOpen]);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-30">
       <div className="mx-auto max-w-[1300px] sm:px-4">
@@ -47,11 +77,12 @@ const NavbarMain = () => {
           </div>
           <div className="ml-auto flex items-center gap-2 lg:ml-0 lg:justify-end">
             <NavbarBtn />
-            <div className="flex lg:hidden">
+            <div ref={togglerRef} className="flex lg:hidden">
               <NavbarToggler />
             </div>
           </div>
           <div
+            ref={mobileMenuRef}
             className={`${
               menuOpen ? "flex" : "hidden"
             } absolute left-0 top-full z-30 w-full justify-center lg:hidden`}
