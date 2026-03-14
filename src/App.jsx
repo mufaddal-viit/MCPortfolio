@@ -7,6 +7,7 @@ import ExperienceMain from "./components/experienceSection/ExperienceMain";
 import FooterMain from "./components/footer/FooterMain";
 import HeroGradient from "./components/heroSection/HeroGradient";
 import HeroMain from "./components/heroSection/HeroMain";
+import CursorEffect from "./components/cursorEffect";
 import NavbarMain from "./components/navbar/NavbarMain";
 import ProjectsMain from "./components/projectsSection/ProjectsMain";
 import SkillsMain from "./components/skillsSection/SkillsMain";
@@ -86,11 +87,14 @@ function HomePage() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/blogs" element={<Blogs />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <>
+      <CursorEffect />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
   );
 }
 

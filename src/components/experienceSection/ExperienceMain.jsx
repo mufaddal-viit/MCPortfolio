@@ -1,8 +1,26 @@
-import AllExperiences from "./AllExperiences";
 import ExperienceText from "./ExperienceText";
-import ExperienceTop from "./ExperienceTop";
+import SingleExperience from "./SingleExperience";
+import experienceSectionData from "./experienceData";
+import experienceDisplayOrder from "./experienceOrder";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../framerMotion/variants";
+
+const orderIndex = new Map(
+  experienceDisplayOrder.map((experienceId, index) => [experienceId, index]),
+);
+
+const orderedExperiences = [...experienceSectionData.experiences].sort(
+  (firstExperience, secondExperience) => {
+    const firstIndex = orderIndex.get(firstExperience.id);
+    const secondIndex = orderIndex.get(secondExperience.id);
+
+    if (firstIndex === undefined && secondIndex === undefined) return 0;
+    if (firstIndex === undefined) return 1;
+    if (secondIndex === undefined) return -1;
+
+    return firstIndex - secondIndex;
+  },
+);
 
 const ExperienceMain = () => {
   return (
@@ -15,16 +33,19 @@ const ExperienceMain = () => {
       >
         <ExperienceText />
       </motion.div>
-      <motion.div
-        variants={fadeIn("down", 0.5)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0 }}
-      >
-        <ExperienceTop />
-        {/* <div className="w-full h-1 mt-4 bg-newcolor lg:block sm:hidden"></div> */}
-      </motion.div>
-      {/* <AllExperiences /> */}
+      <div className="space-y-16">
+        {orderedExperiences.map((experience, index) => (
+          <motion.div
+            key={experience.id || `experience-${index}`}
+            variants={fadeIn("down", 0.35 + index * 0.15)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0 }}
+          >
+            <SingleExperience experience={experience} index={index} />
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 };

@@ -7,3 +7,28 @@
     @apply bg-background text-foreground dark:bg-background-dark dark:text-foreground-dark;
   }
 }
+
+@media (hover: hover) and (pointer: fine) {
+  body.cursor-effect-enabled,
+  body.cursor-effect-enabled * {
+    cursor: none !important;
+  }
+
+  .cursor-dot,
+  .cursor-ring {
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .cursor-ring.is-hovering {
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+
+  .cursor-ring.is-pressed {
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+
+  .cursor-ring.is-hovering.is-pressed {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}

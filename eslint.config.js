@@ -18,7 +18,18 @@ export default [
         sourceType: 'module',
       },
     },
-    settings: { react: { version: '18.3' } },
+    settings: {
+      react: { version: '18.3' },
+      'import/resolver': {
+        node: {
+          extensions: ['.js', '.jsx', '.json'],
+        },
+        alias: {
+          map: [['@', './src']],
+          extensions: ['.js', '.jsx', '.json'],
+        },
+      },
+    },
     plugins: {
       import: importPlugin,
       react,
@@ -31,6 +42,7 @@ export default [
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
       'import/no-unresolved': 'error',
+      'react/prop-types': 'off',
       'react/jsx-no-target-blank': 'off',
       'react-refresh/only-export-components': [
         'warn',
