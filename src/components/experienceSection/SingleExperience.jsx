@@ -6,7 +6,7 @@ function ExperienceLeft({ intro }) {
 
   return (
     <div className="flex flex-col gap-8 items-center lg:items-start">
-      <p className="self-start text-lightCyan font-bold uppercase text-xl lg:text-3xl font-special text-left">
+      <p className="self-start text-accent font-bold uppercase text-xl lg:text-3xl font-special text-left">
         {timeline}
       </p>
 
@@ -16,10 +16,10 @@ function ExperienceLeft({ intro }) {
             key={`${highlight.number}-${highlight.text}-${highlightIndex}`}
             className="flex flex-col items-center lg:items-start"
           >
-            <p className="m-2 text-5xl font-bold text-orange lg:text-6xl">
+            <p className="m-2 text-5xl font-bold text-accent-2 lg:text-6xl">
               {highlight.number}
             </p>
-            <p className="-mt-1 text-lg font-bold uppercase text-cyan lg:text-xl">
+            <p className="-mt-1 text-lg font-bold uppercase text-accent lg:text-xl">
               {highlight.text}
             </p>
           </div>
@@ -52,11 +52,11 @@ function ExperienceCenter({ image }) {
 
 function ExperienceRight({ descriptionParagraphs, experienceKey }) {
   return (
-    <div className="w-full rounded-xl border border-white p-5 md:p-6">
+    <div className="w-full rounded-xl border border-default/50 bg-surface/35 p-5 md:p-6">
       {descriptionParagraphs.map((paragraph, paragraphIndex) => (
         <p
           key={`experience-paragraph-${experienceKey}-${paragraphIndex}`}
-          className={`text-sm text-white md:text-base ${
+          className={`text-sm text-primary md:text-base ${
             paragraphIndex === descriptionParagraphs.length - 1 ? "" : "mb-4"
           }`}
         >
@@ -64,7 +64,7 @@ function ExperienceRight({ descriptionParagraphs, experienceKey }) {
             <span
               key={`experience-segment-${experienceKey}-${paragraphIndex}-${segmentIndex}`}
               className={
-                segment.highlight ? "font-bold text-orange" : undefined
+                segment.highlight ? "font-bold text-accent-2" : undefined
               }
             >
               {segment.text}

@@ -24,12 +24,12 @@ const NavbarLogo = ({ onHomeSelect }) => {
         className="group text-left leading-tight"
       >
         {/* Full Name */}
-        <span className="hidden md:block text-white text-xl md:text-2xl font-semibold tracking-wide transition-colors duration-300 group-hover:text-cyan">
+        <span className="hidden text-primary transition-colors duration-300 group-hover:text-accent md:block md:text-2xl text-xl font-semibold tracking-wide">
           Mufaddal Calcuttawala
         </span>
 
         {/* Mobile Logo */}
-        <span className="block md:hidden text-white font-special font-extrabold text-3xl transition-colors duration-300 group-hover:text-cyan">
+        <span className="block text-primary transition-colors duration-300 group-hover:text-accent md:hidden text-3xl font-special font-extrabold">
           MC
         </span>
       </button>

@@ -81,13 +81,13 @@ const AllSkillsSM = () => {
           group flex flex-col items-center justify-center
           aspect-square
           p-6 rounded-2xl
-          border border-orange/20
-          bg-gradient-to-b from-white/40 to-transparent
-          hover:border-orange/40 hover:shadow-md
+          border border-default/20
+          bg-gradient-to-b from-surface/40 to-transparent
+          hover:border-accent-2/40 hover:shadow-md
           transition-all duration-300
         "
       >
-        <item.icon className="text-5xl sm:text-6xl text-orange mb-4 transition-transform group-hover:scale-110" />
+        <item.icon className="mb-4 text-5xl text-accent-2 transition-transform group-hover:scale-110 sm:text-6xl" />
         <p className="text-sm sm:text-base font-medium">{item.skill}</p>
       </motion.div>
     ))}

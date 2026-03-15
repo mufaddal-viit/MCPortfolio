@@ -72,14 +72,14 @@ const NavbarMain = () => {
       {menuOpen ? (
         <button
           type="button"
-          className="fixed inset-0 z-10 bg-black/45 backdrop-blur-[2px] lg:hidden"
+          className="fixed inset-0 z-10 bg-overlay/45 backdrop-blur-[2px] lg:hidden"
           onClick={closeMobileMenu}
           aria-label="Close mobile navigation"
         />
       ) : null}
 
       <div className="relative z-20 mx-auto max-w-[1300px] sm:px-4">
-        <div className="relative mt-3 flex items-center gap-3 rounded-full border border-orange/40 px-3 py-3 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.35)] sm:px-4 md:px-6 lg:grid lg:grid-cols-[auto,1fr,auto] lg:gap-4">
+        <div className="relative mt-3 flex items-center gap-3 rounded-full border border-default/35 bg-surface/55 px-3 py-3 backdrop-blur-xl shadow-lg shadow-overlay/20 sm:px-4 md:px-6 lg:grid lg:grid-cols-[auto,1fr,auto] lg:gap-4">
           <NavbarLogo onHomeSelect={() => setActiveSection("home")} />
           {/* <div className="flex-1 flex justify-center lg:hidden">
             <NavbarSocial className="pt-0" />

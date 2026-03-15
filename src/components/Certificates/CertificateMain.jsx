@@ -12,11 +12,11 @@ export default function CertificateMain() {
         whileInView="show"
         viewport={{ once: false, amount: 0 }}
       >
-        <h2 className="text-4xl md:text-5xl lg:text-6xl text-cyan mb-12 text-center font-bold">
+        <h2 className="mb-12 text-center text-4xl font-bold text-accent md:text-5xl lg:text-6xl">
           Certificates
         </h2>
 
-        <div className="flex flex-col gap-16 lg:flex-row lg:gap-24 bg-brown p-8 md:p-12 rounded-2xl mb-20">
+        <div className="mb-20 flex flex-col gap-16 rounded-2xl bg-surface p-8 md:p-12 lg:flex-row lg:gap-24">
           {/* Certificate 1 */}
           <div className="flex flex-col items-center text-center flex-1">
             <CertificateText certName="AWS Certified Developer" />

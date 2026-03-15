@@ -6,7 +6,7 @@ import { BLOG_POSTS } from "./blogList";
 
 export default function Blogs() {
   return (
-    <main className="font-body text-white relative overflow-hidden min-h-screen">
+    <main className="relative min-h-screen overflow-hidden font-body text-primary">
       <NavbarMain />
       <BlogsPageLayout posts={BLOG_POSTS} />
       <FooterMain />

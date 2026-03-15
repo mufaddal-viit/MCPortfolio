@@ -1,23 +1,3 @@
-// import ContactMeLeft from "./ContactMeLeft";
-// import ContactMeRight from "./ContactMeRight";
-
-// const ContactMeMain = () => {
-//   return (
-//     <div
-//       id="contact"
-//       className="max-w-[1200px] mx-auto items-center justify-center mt-[100px] px-4 "
-//     >
-//       <h2 className="text-6xl text-cyan mb-10 text-center">Contact Me</h2>
-//       <div className="flex justify-between gap-24 bg-brown p-8 rounded-2xl lg:flex-row sm:flex-col">
-//         <ContactMeLeft />
-//         <ContactMeRight />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ContactMeMain;
-
 import ContactMeLeft from "./ContactMeLeft";
 import ContactMeRight from "./ContactMeRight";
 import { useState } from "react";
@@ -38,10 +18,10 @@ const ContactMeMain = () => {
         whileInView="show"
         viewport={{ once: false, amount: 0 }}
       >
-        <h2 className="text-6xl text-cyan mb-10 text-center font-bold">
+        <h2 className="mb-10 text-center text-6xl font-bold text-accent">
           Contact Me
         </h2>
-        <div className="flex justify-between gap-24 bg-brown p-8 rounded-2xl lg:flex-row sm:flex-col">
+        <div className="flex justify-between gap-24 rounded-2xl bg-surface px-8 py-8 lg:flex-row sm:flex-col">
           <div
             className="relative"
             onMouseEnter={() => setIsTooltipOpen(true)}
@@ -51,7 +31,7 @@ const ContactMeMain = () => {
           >
             <ContactMeLeft />
             {isTooltipOpen ? (
-              <div className="pointer-events-none absolute left-1/2 top-0 z-10 w-max max-w-[260px] -translate-x-1/2 -translate-y-[calc(100%+12px)] rounded-lg bg-black/85 px-3 py-2 text-sm text-white shadow-lg shadow-black/30">
+              <div className="pointer-events-none absolute left-1/2 top-0 z-10 w-max max-w-[260px] -translate-x-1/2 -translate-y-[calc(100%+12px)] rounded-lg bg-tooltip-bg/90 px-3 py-2 text-sm text-tooltip-fg shadow-lg shadow-overlay/25">
                 The form uses EmailJS for sending emails.
               </div>
             ) : null}
@@ -59,7 +39,7 @@ const ContactMeMain = () => {
           <ContactMeRight />
         </div>
       </motion.div>
-      <div className="w-full h-1 mt-14 bg-newcolor lg:block sm:hidden"></div>
+      <div className="mt-14 h-1 w-full bg-surface-2 lg:block sm:hidden"></div>
     </div>
   );
 };

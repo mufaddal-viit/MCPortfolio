@@ -124,12 +124,12 @@ function CursorEffect() {
       <div
         ref={dotRef}
         aria-hidden="true"
-        className="cursor-dot pointer-events-none fixed left-0 top-0 z-[9999] hidden h-2 w-2 rounded-full bg-white opacity-0 transition-opacity duration-200 md:block"
+        className="cursor-dot pointer-events-none fixed left-0 top-0 z-[9999] hidden h-2 w-2 rounded-full bg-[rgb(var(--cursor))] opacity-0 transition-opacity duration-200 md:block"
       />
       <div
         ref={ringRef}
         aria-hidden="true"
-        className="cursor-ring pointer-events-none fixed left-0 top-0 z-[9998] hidden h-7 w-7 rounded-full border-2 border-white opacity-0 transition-[opacity,transform] duration-200 md:block"
+        className="cursor-ring pointer-events-none fixed left-0 top-0 z-[9998] hidden h-7 w-7 rounded-full border-2 border-[rgb(var(--cursor))] opacity-0 transition-[opacity,transform] duration-200 md:block"
       />
     </>
   );

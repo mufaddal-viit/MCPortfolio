@@ -26,7 +26,7 @@ const NavbarBtn = () => {
     <button
       type="button"
       onClick={handleHireMe}
-      className="group px-3 py-2 sm:px-4 rounded-full text-sm sm:text-base md:text-lg font-bold font-body text-white border-cyan/70 border flex items-center gap-2 bg-gradient-to-r from-darkCyan to-orange transition-all duration-500 hover:scale-[1.03] hover:border-orange cursor-pointer hover:shadow-cyanShadow"
+      className="group flex cursor-pointer items-center gap-2 rounded-full border border-accent/70 bg-gradient-to-r from-accent-strong to-accent-2 px-3 py-2 font-body text-sm font-bold text-tooltip-fg transition-all duration-500 hover:scale-[1.03] hover:border-accent-2 hover:shadow-lg hover:shadow-[rgb(var(--glow-primary)/0.35)] sm:px-4 sm:text-base md:text-lg"
     >
       Hire Me
       <div className="sm:hidden md:block">

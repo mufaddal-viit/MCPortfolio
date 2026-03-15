@@ -14,11 +14,11 @@ const SingleProject = ({ name, year, align, image, link }) => {
       } justify-end sm:flex-col`}
     >
       <div>
-        <h2 className="md:text-5xl sm:text-3xl text-orange font-extrabold ">
+        <h2 className="text-accent-2 font-extrabold md:text-5xl sm:text-3xl">
           {name}
         </h2>
         {/* <h2
-          className={`text-xl font-thin text-white font-special sm:text-center ${
+          className={`text-xl font-thin text-secondary font-special sm:text-center ${
             align === "left" ? "md:text-right" : "md:text-left"
           }`}
         >
@@ -27,15 +27,15 @@ const SingleProject = ({ name, year, align, image, link }) => {
         <a
           href={link}
           target="_blank"
-          className={`mt-3 text-2xl flex gap-2 items-center text-cyan hover:text-orange transition-all duration-500 cursor-pointer sm:justify-self-center ${
+          rel="noopener noreferrer"
+          className={`mt-3 flex cursor-pointer items-center gap-2 text-2xl text-accent transition-all duration-500 hover:text-accent-2 sm:justify-self-center ${
             align === "left" ? "md:justify-self-end" : "md:justify-self-start"
           }`}
         >
           View <BsFillArrowUpRightCircleFill />
         </a>
       </div>
-      {/* <div className="w-full h-full bg-cyan opacity-50 absolute top-0 left-0 hover:opacity-0 transition-all duration-500 md:block sm:hidden"></div> */}
-      <div className="w-[210px] h-[210px] rounded-xl overflow-hidden hover:scale-110 transform transition-all duration-500 relative border border-white">
+      <div className="relative h-[210px] w-[210px] transform overflow-hidden rounded-xl border border-default/60 transition-all duration-500 hover:scale-110">
         <img
           src={image}
           alt={`${name} preview`}

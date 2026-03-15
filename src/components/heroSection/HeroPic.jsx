@@ -13,15 +13,15 @@ const HeroPic = () => {
     >
       <div className="relative flex items-center justify-center w-[340px] h-[380px] md:w-[420px] md:h-[480px] overflow-visible">
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="h-[85%] w-[85%] rounded-full bg-cyan/25 blur-3xl" />
+          <div className="h-[85%] w-[85%] rounded-full bg-accent/25 blur-3xl" />
         </div>
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-          <PiHexagonThin className="w-[190%] h-[190%] text-cyan/95 mix-blend-screen drop-shadow-[0_0_40px_rgba(21,209,233,0.95)] animate-[spin_28s_linear_infinite]" />
+          <PiHexagonThin className="h-[190%] w-[190%] animate-[spin_28s_linear_infinite] text-accent/95 mix-blend-screen drop-shadow-[0_0_40px_rgb(var(--glow-primary)/0.95)]" />
         </div>
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-          <PiHexagonThin className="w-[150%] h-[150%] text-orange/80 mix-blend-screen drop-shadow-[0_0_28px_rgba(251,151,24,0.7)] animate-[spin_20s_linear_reverse_infinite]" />
+          <PiHexagonThin className="h-[150%] w-[150%] animate-[spin_20s_linear_reverse_infinite] text-accent-2/80 mix-blend-screen drop-shadow-[0_0_28px_rgb(var(--glow-secondary)/0.7)]" />
         </div>
-        <div className="relative z-10 rounded-[80px] overflow-hidden ring-2 ring-cyan/80 shadow-[0_0_50px_rgba(21,209,233,0.55)]">
+        <div className="relative z-10 overflow-hidden rounded-[80px] ring-2 ring-accent/80 shadow-[0_0_50px_rgb(var(--glow-primary)/0.55)]">
           <img
             src="/images/myself.jpeg"
             alt="Mufaddal Calcuttawala"

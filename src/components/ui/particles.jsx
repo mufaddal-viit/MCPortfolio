@@ -40,6 +40,34 @@ function hexToRgb(hex) {
   return [red, green, blue];
 }
 
+function rgbStringToArray(value) {
+  const matches = value.match(/\d+/g);
+  if (!matches || matches.length < 3) return null;
+
+  return matches.slice(0, 3).map((channel) => Number(channel));
+}
+
+function resolveColor(color) {
+  if (!color) return [255, 255, 255];
+
+  if (color.startsWith("#")) {
+    return hexToRgb(color);
+  }
+
+  if (color.startsWith("--")) {
+    const cssValue = getComputedStyle(document.documentElement)
+      .getPropertyValue(color)
+      .trim();
+    return rgbStringToArray(cssValue) || [255, 255, 255];
+  }
+
+  if (color.startsWith("rgb")) {
+    return rgbStringToArray(color) || [255, 255, 255];
+  }
+
+  return [255, 255, 255];
+}
+
 export const Particles = ({
   className = "",
   quantity = 100,
@@ -47,7 +75,7 @@ export const Particles = ({
   ease = 50,
   size = 0.4,
   refresh = false,
-  color = "#ffffff",
+  color = "--particle",
   vx = 0,
   vy = 0,
   ...props
@@ -63,7 +91,7 @@ export const Particles = ({
   const rafID = useRef(null);
   const resizeTimeout = useRef(null);
 
-  const rgb = hexToRgb(color);
+  const rgb = resolveColor(color);
 
   const circleParams = () => {
     const x = Math.floor(Math.random() * canvasSize.current.w);

@@ -36,7 +36,7 @@ export function KineticScroll({
   /** Visuals */
   showBackground = true,
   backgroundMode = "local", // "local" | "fixed"
-  dotColor = "rgba(0,0,0,0.15)",
+  dotColor = "rgb(var(--default) / 0.15)",
   dotSpacing = 24,
   dotSize = 1.5,
   mask = true,

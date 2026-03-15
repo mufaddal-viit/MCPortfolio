@@ -32,7 +32,11 @@
 }
 
 .section[data-bg="on"][data-mask="on"]::before {
-  mask-image: radial-gradient(circle at top left, #000 0%, transparent 75%);
+  mask-image: radial-gradient(
+    circle at top left,
+    rgb(var(--mask-solid)) 0%,
+    transparent 75%
+  );
   mask-size: 100% 100%;
   mask-repeat: no-repeat;
 }

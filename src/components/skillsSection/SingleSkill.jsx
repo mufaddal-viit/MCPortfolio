@@ -75,10 +75,10 @@ const colorClassMap = {
 };
 
 const fallbackColors = {
-  text: "text-orange-500",
-  bgLight: "bg-orange/10",
-  bgHover: "group-hover:bg-orange/20",
-  borderHover: "group-hover:border-orange/60",
+  text: "text-accent-2",
+  bgLight: "bg-accent-2/10",
+  bgHover: "group-hover:bg-accent-2/20",
+  borderHover: "group-hover:border-accent-2/60",
 };
 
 const SingleSkill = ({ imgSvg, text, color }) => {
@@ -103,7 +103,7 @@ const SingleSkill = ({ imgSvg, text, color }) => {
           w-20 h-20 sm:w-24 sm:h-24
           ${colors.bgLight} ${colors.bgHover}
           rounded-full
-          border-4 border-orange/60 ${colors.borderHover}
+          border-4 border-default/60 ${colors.borderHover}
           shadow-sm group-hover:shadow-md
           backdrop-blur-[2px]
           transition-all duration-400 ease-out
@@ -125,7 +125,7 @@ const SingleSkill = ({ imgSvg, text, color }) => {
       <p
         className={`
           mt-4 text-base sm:text-lg font-semibold text-center
-          text-white/90 group-hover:text-white
+          text-primary/90 group-hover:text-primary
           tracking-wide
           transition-colors duration-300
         `}

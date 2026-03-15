@@ -1,8 +1,8 @@
 const ProjectsText = () => {
   return (
     <div className="flex flex-col items-center mt-[100px]">
-      <h2 className="text-6xl text-cyan mb-10 font-bold">Projects</h2>
-      <p className="text-lg text-center">
+      <h2 className="mb-10 text-6xl font-bold text-accent">Projects</h2>
+      <p className="text-center text-lg text-secondary">
         I have worked on web development projects, ranging from responsive
         websites <br />
         to full-stack applications and complex front-end interfaces.

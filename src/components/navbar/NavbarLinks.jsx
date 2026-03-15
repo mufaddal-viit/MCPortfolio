@@ -114,11 +114,11 @@ const NavbarLinks = ({ activeSection, onItemSelect, onNavigate }) => {
   return (
     <SparkleUnderlineNav
       items={links}
-      color="#00fffc"
+      color="rgb(var(--accent))"
       onSelect={handleSelect}
       activeKey={activeSection}
       className="relative w-full flex justify-center max-lg:mt-3 max-lg:w-[min(92vw,420px)] lg:static"
-      listClassName="flex gap-8 text-white font-body lg:gap-10 lg:items-center lg:justify-between lg:w-[680px] lg:text-md max-lg:flex-col max-lg:text-center max-lg:bg-black/70 max-lg:backdrop-blur-lg max-lg:py-4 max-lg:px-6 max-lg:rounded-2xl max-lg:shadow-[0_20px_50px_rgba(0,0,0,0.35)] max-lg:w-full"
+      listClassName="flex gap-8 font-body text-primary lg:gap-10 lg:items-center lg:justify-between lg:w-[680px] lg:text-md max-lg:flex-col max-lg:w-full max-lg:rounded-2xl max-lg:bg-surface/90 max-lg:px-6 max-lg:py-4 max-lg:text-center max-lg:backdrop-blur-lg max-lg:shadow-lg max-lg:shadow-overlay/20"
     />
   );
 };

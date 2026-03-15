@@ -93,7 +93,7 @@ export function DockDemo() {
     <div className="fixed left-1/2 bottom-6 z-50 -translate-x-1/2">
       <Dock
         direction="middle"
-        className="mx-0 mt-0 border-black/10 bg-white/60 shadow-lg shadow-black/10 backdrop-blur-xl backdrop-saturate-150 dark:border-white/10 dark:bg-black/30 dark:shadow-black/30"
+        className="mx-0 mt-0 border-default/25 bg-surface/65 shadow-lg shadow-overlay/10 backdrop-blur-xl backdrop-saturate-150"
       >
         {DATA.navbar.map((item) => (
           <DockIcon key={item.label}>
@@ -103,35 +103,35 @@ export function DockDemo() {
               onClick={(event) => handleInternalNav(event, item.href)}
               aria-label={item.label}
               title={item.label}
-              className="grid size-12 place-items-center rounded-full text-black transition-colors hover:bg-cyan/20 dark:text-white"
+              className="grid size-12 place-items-center rounded-full text-primary transition-colors hover:bg-accent/20"
             >
               <item.icon className="size-4" />
             </Link>
           </DockIcon>
         ))}
-        <div className="h-8 w-px bg-black/30 dark:bg-white/15" />
+        <div className="h-8 w-px bg-default/30" />
         {Object.entries(DATA.contact.social)
           .filter(([, social]) => Boolean(social.url))
           .map(([name, social]) => (
           <DockIcon key={name}>
             <a
-            target="_blank"
+              target="_blank"
               href={social.url}
               rel="noopener noreferrer"
               aria-label={social.name}
               title={name}
-              className="grid size-12 place-items-center rounded-full text-black transition-colors hover:bg-cyan/20 dark:text-white"
+              className="grid size-12 place-items-center rounded-full text-primary transition-colors hover:bg-accent/20"
             >
               <social.icon className="size-4" />
             </a>
           </DockIcon>
         ))}
-        <div className="h-8 w-px bg-black/30 dark:bg-white/15" />
+        <div className="h-8 w-px bg-default/30" />
         <DockIcon>
           <ThemeToggle
             fixed={false}
             showLabel={false}
-            className="size-12 rounded-full border-0 bg-transparent px-0 py-0 text-black shadow-none hover:bg-cyan/20 dark:text-white"
+            className="size-12 rounded-full border-0 bg-transparent px-0 py-0 text-primary shadow-none hover:bg-accent/20"
           />
         </DockIcon>
       </Dock>

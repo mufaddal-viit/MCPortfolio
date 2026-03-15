@@ -49,23 +49,23 @@ const FooterMain = () => {
 
   return (
     <div className="px-4">
-      <div className="w-full h-[1px] bg-lightGrey mt-24"></div>
-      <div className="md:flex justify-between mt-4 max-w-[1200px] mx-auto sm:hidden">
+      <div className="mt-24 h-[1px] w-full bg-default/50"></div>
+      <div className="mx-auto mt-4 max-w-[1200px] justify-between md:flex sm:hidden">
         <button
           type="button"
           onClick={() => goToSection("about")}
-          className="text-3xl text-white mt-4 hover:text-orange transition-all duration-500 cursor-pointer"
+          className="mt-4 cursor-pointer text-3xl text-primary transition-all duration-500 hover:text-accent-2"
         >
           Mufaddal Calcuttawala
         </button>
-        <ul className="flex gap-4 text-white text-xl mt-4">
+        <ul className="mt-4 flex gap-4 text-xl text-primary">
           {footerLinks.map((item, index) => {
             return (
               <li key={index}>
                 <button
                   type="button"
                   onClick={() => goToSection(item.section)}
-                  className="hover:text-orange transition-all duration-500 cursor-pointer"
+                  className="cursor-pointer transition-all duration-500 hover:text-accent-2"
                 >
                   {item.name}
                 </button>
@@ -75,8 +75,8 @@ const FooterMain = () => {
         </ul>
       </div>
 
-      <p className=" text-center  mx-auto mt-20 mb-12 text-sm text-white">
-        © 2025 Mufaddal | All Rights Reserved.
+      <p className="mx-auto mt-20 mb-12 text-center text-sm text-secondary">
+        &copy; 2025 Mufaddal | All Rights Reserved.
       </p>
     </div>
   );

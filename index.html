@@ -1,8 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="m-icon.svg" />
+    <script>
+      (() => {
+        const STORAGE_KEY = "theme-preference";
+        const root = document.documentElement;
+        const storedTheme = window.localStorage.getItem(STORAGE_KEY);
+        const themePreference =
+          storedTheme === "light" ||
+          storedTheme === "dark" ||
+          storedTheme === "system"
+            ? storedTheme
+            : "system";
+        const resolvedTheme =
+          themePreference === "system"
+            ? window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light"
+            : themePreference;
+
+        root.dataset.theme = resolvedTheme;
+        root.dataset.themePreference = themePreference;
+        root.classList.toggle("dark", resolvedTheme === "dark");
+        root.style.colorScheme = resolvedTheme;
+      })();
+    </script>
     <!-- Add in index.html <head> -->
     <link
       href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;700;900&display=swap"

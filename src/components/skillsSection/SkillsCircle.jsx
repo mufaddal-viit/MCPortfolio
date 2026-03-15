@@ -3,7 +3,7 @@ import { FcSettings } from "react-icons/fc";
 
 const SkillsCircle = () => {
   return (
-    <div className="h-[200px] w-[200px]  rounded-full flex items-center justify-center absolute left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%] border-2  border-orange overflow-hidden">
+    <div className="absolute left-[50%] top-[50%] flex h-[200px] w-[200px] -translate-x-[50%] -translate-y-[50%] items-center justify-center overflow-hidden rounded-full border-2 border-accent-2">
       <img src="../../public/images/skills.avif" alt="my skills" />
     </div>
   );

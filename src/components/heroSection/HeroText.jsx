@@ -53,7 +53,7 @@ const HeroText = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0 }}
-        className="md:text-[2.8rem] lg:text-6xl sm:text-4xl text-darkCyan font-bold uppercase"
+        className="text-accent-strong font-bold uppercase md:text-[2.8rem] lg:text-6xl sm:text-4xl"
       >
         Mufaddal <br className="sm:hidden md:block" />
         Calcuttawala
@@ -63,7 +63,7 @@ const HeroText = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0 }}
-        className="text-white font-bold uppercase text-center 
+        className="text-primary font-bold uppercase text-center 
              sm:text-3xl md:text-3xl lg:text-4xl tracking-widest
               leading-relaxed font-arabic-display"
       >
@@ -75,7 +75,7 @@ const HeroText = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0 }}
-        className="text-lg mt-4"
+        className="mt-4 text-lg text-secondary"
       >
         Crafting high-performance, <br /> AI-powered SaaS web applications.
       </motion.p>

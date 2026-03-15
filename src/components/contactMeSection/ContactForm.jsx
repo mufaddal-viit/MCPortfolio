@@ -57,7 +57,7 @@ const ContactForm = () => {
 
   return (
     <div>
-      {success && <p className="text-cyan text-center mb-4">{success}</p>}
+      {success && <p className="mb-4 text-center text-accent">{success}</p>}
       {/* <Tooltip text="Hover me" tooltip="This is a tooltip!" /> */}
 
       <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-4">
@@ -66,7 +66,7 @@ const ContactForm = () => {
           name="from_name"
           placeholder="Your Name"
           required
-          className="h-12 rounded-lg bg-newcolor px-2 text-brown text-lg"
+          className="h-12 rounded-lg bg-input-bg px-3 text-input-fg placeholder:text-secondary/70 text-lg"
           value={name}
           onChange={handleName}
         />
@@ -75,7 +75,7 @@ const ContactForm = () => {
           name="from_email"
           placeholder="Your Email"
           required
-          className="h-12 rounded-lg bg-newcolor px-2 text-brown text-lg"
+          className="h-12 rounded-lg bg-input-bg px-3 text-input-fg placeholder:text-secondary/70 text-lg"
           value={email}
           onChange={handleEmail}
         />
@@ -85,7 +85,7 @@ const ContactForm = () => {
           cols="50"
           placeholder="Message"
           required
-          className="rounded-lg bg-newcolor p-2 text-brown text-lg"
+          className="rounded-lg bg-input-bg p-3 text-input-fg placeholder:text-secondary/70 text-lg"
           value={message}
           onChange={handleMessage}
         />
@@ -94,13 +94,13 @@ const ContactForm = () => {
         <button
           type="submit"
           disabled={isSending || isSent}
-          className={`w-full rounded-lg border border-lightCyan text-white h-12 font-bold text-xl transition-all duration-500
+          className={`h-12 w-full rounded-lg border border-accent text-xl font-bold text-tooltip-fg transition-all duration-500
             ${
               isSent
-                ? "bg-green-600 cursor-not-allowed"
+                ? "cursor-not-allowed bg-success"
                 : isSending
-                ? "bg-grey cursor-wait"
-                : "hover:bg-darkCyan bg-cyan"
+                ? "cursor-wait bg-muted"
+                : "bg-accent hover:bg-accent-strong"
             }`}
         >
           {isSent ? "SENT ✅" : isSending ? "Sending..." : "SEND"}

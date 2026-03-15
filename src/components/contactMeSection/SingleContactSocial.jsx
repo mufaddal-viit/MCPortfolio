@@ -1,6 +1,6 @@
 const SingleContactSocial = ({ Icon, link }) => {
   return (
-    <div className="text-2xl h-12 w-12 border border-orange text-orange rounded-full p-3 flex items-center justify-center">
+    <div className="flex h-12 w-12 items-center justify-center rounded-full border border-accent-2 text-2xl text-accent-2">
       <a
         href={link}
         className="cursor-pointer"
