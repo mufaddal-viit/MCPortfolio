@@ -8,6 +8,7 @@ import FooterMain from "./components/footer/FooterMain";
 import HeroMain from "./components/heroSection/HeroMain";
 import CursorEffect from "./components/cursorEffect";
 import NavbarMain from "./components/navbar/NavbarMain";
+import PortfolioAI from "./components/PortfolioAI";
 import ProjectsMain from "./components/projectsSection/ProjectsMain";
 import SkillsMain from "./components/skillsSection/SkillsMain";
 import { DockDemo } from "./components/dock";
@@ -99,6 +100,7 @@ function App() {
         />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <PortfolioAI />
     </>
   );
 }
