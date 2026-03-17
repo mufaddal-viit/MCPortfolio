@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { LoaderCircle, Search, Sparkles, X } from "lucide-react";
 
-import { askGroq } from "../../lib/askGroq";
-
 // const PROMPT_SUGGESTIONS = [
 //   {
 //     label: "PwC experience",
@@ -98,6 +96,7 @@ export default function HeroSearchPalette() {
     setLoading(true);
 
     try {
+      const { askGroq } = await import("../../lib/askGroq");
       const reply = await askGroq(nextPrompt, history);
       setMessages((previousMessages) => [
         ...previousMessages,
