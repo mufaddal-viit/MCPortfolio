@@ -1,43 +1,75 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 
-function AccordionItem({ item, isOpen, onToggle }) {
+function AccordionItem({ item, itemIndex, isOpen, onToggle }) {
+  const sections = [item.description1, item.description2].filter(
+    (section) => section && (section.heading || section.desc),
+  );
+
   return (
-    <div className="border-b border-default/45">
+    <div
+      className={`border-b border-default/30 transition-colors duration-200 last:border-b-0 ${
+        isOpen ? "border-l-2 border-l-accent pl-4" : ""
+      }`}
+    >
       <button
+        id={`${item.id}-trigger`}
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
         aria-controls={`${item.id}-panel`}
-        className="flex w-full items-center gap-6 py-6 text-left transition-colors duration-300 hover:text-accent md:py-8"
+        className="flex w-full items-start justify-between gap-6 py-6 text-left text-primary transition-colors duration-200 hover:text-accent md:py-8"
       >
-        <span className="flex-1 text-2xl font-semibold tracking-[-0.03em] text-primary md:text-[2rem]">
-          {item.title}
+        <span className="flex items-start gap-4 md:gap-6">
+          <span className="pt-1 font-mono text-[0.68rem] font-bold uppercase tracking-[0.28em] text-accent">
+            {itemIndex}
+          </span>
+
+          <span className="text-xl font-semibold tracking-[-0.04em] md:text-[1.5rem]">
+            {item.title}
+          </span>
         </span>
+
         <span
           aria-hidden="true"
-          className="flex size-10 shrink-0 items-center justify-center text-secondary transition-colors duration-300"
+          className="mt-1 flex size-8 shrink-0 items-center justify-center text-secondary transition-colors duration-200"
         >
-          {isOpen ? <Minus className="size-7" /> : <Plus className="size-7" />}
+          {isOpen ? <Minus className="size-6" /> : <Plus className="size-6" />}
         </span>
       </button>
 
-      <AnimatePresence initial={false}>
-        {isOpen ? (
-          <motion.div
-            id={`${item.id}-panel`}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.24, ease: "easeOut" }}
-            className="overflow-hidden"
-          >
-            <p className="max-w-[50ch] pb-6 pr-12 text-base leading-7 text-secondary md:pb-8 md:text-lg">
-              {item.description}
-            </p>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+      <motion.div
+        id={`${item.id}-panel`}
+        role="region"
+        aria-labelledby={`${item.id}-trigger`}
+        initial={false}
+        animate={{
+          height: isOpen ? "auto" : 0,
+          opacity: isOpen ? 1 : 0,
+        }}
+        transition={{ duration: 0.24, ease: "easeOut" }}
+        className="overflow-hidden"
+      >
+        <div
+          className={`grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 ${
+            sections.length > 0 ? "pb-4" : ""
+          } ${isOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+        >
+          {sections.map((section, sectionIndex) => (
+            <div key={`${item.id}-section-${sectionIndex}`}>
+              {section.heading ? (
+                <h3 className="text-base font-semibold tracking-[-0.03em] text-primary">
+                  {section.heading}
+                </h3>
+              ) : null}
+
+              {section.desc ? (
+                <p className="mt-2 text-base text-secondary">{section.desc}</p>
+              ) : null}
+            </div>
+          ))}
+        </div>
+      </motion.div>
     </div>
   );
 }

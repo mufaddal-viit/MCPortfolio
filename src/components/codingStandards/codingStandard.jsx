@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import AccordionItem from "./AccordionItem";
 import accordionColumns from "./accordionColumns";
-import { fadeIn } from "../../framerMotion/variants";
 
-const CodingStandardMain = () => {
+const CodingStandard = () => {
   const [openItemId, setOpenItemId] = useState(null);
+  // const totalItems = accordionColumns.flat().length;
 
   const toggleItem = (itemId) => {
     setOpenItemId((currentItemId) =>
@@ -14,48 +13,53 @@ const CodingStandardMain = () => {
   };
 
   return (
-    <div
-      id="coding-standards"
-      className="mx-auto mt-[100px] max-w-[1200px] items-center justify-center px-4"
-    >
-      <motion.div
-        variants={fadeIn("up", 0.5)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0 }}
-      >
-        <h2 className="mb-10 text-center text-6xl font-bold text-accent">
-          Coding Standards
-        </h2>
+    <div className="mt-10    p-6  md:p-8 lg:p-10">
+      <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="max-w-3xl">
+          {/* <div className="mb-4 flex items-center gap-3">
+            <span className="font-mono text-[0.68rem] font-bold uppercase tracking-[0.28em] text-accent">
+              Practical Baseline
+            </span>
+            <div className="h-px flex-1 bg-gradient-to-r from-accent/30 to-transparent" />
+          </div> */}
 
-        <div className="rounded-2xl border border-default/30 bg-surface px-6 py-8 md:px-8 md:py-10">
-          <p className="mx-auto max-w-3xl text-center text-base leading-7 text-secondary md:text-lg">
-            I adhere to structured rules, guidelines, and techniques to create
-            readable, efficient, and maintainable code with strong documentation,
-            secure implementation, and clean collaboration workflows.
+          <p className="max-w-2xl text-base leading-7 text-secondary md:text-lg">
+            I follow a clear engineering baseline for architecture, review,
+            security, testing, and documentation so the codebase stays easy to
+            extend and dependable in production.
           </p>
-
-          <div
-            id="accordian"
-            className="mt-10 grid grid-cols-1 gap-x-6 lg:grid-cols-2"
-          >
-            {accordionColumns.map((column, columnIndex) => (
-              <div key={`column-${columnIndex}`}>
-                {column.map((item) => (
-                  <AccordionItem
-                    key={item.id}
-                    item={item}
-                    isOpen={openItemId === item.id}
-                    onToggle={() => toggleItem(item.id)}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
         </div>
-      </motion.div>
+      </div>
+
+      <div
+        id="accordian"
+        className="grid grid-cols-1 gap-x-8 gap-y-2 lg:grid-cols-2"
+      >
+        {accordionColumns.map((column, columnIndex) => {
+          const columnStartIndex = accordionColumns
+            .slice(0, columnIndex)
+            .reduce((count, items) => count + items.length, 0);
+
+          return (
+            <div key={`column-${columnIndex}`} className="bg-page/20">
+              {column.map((item, itemIndex) => (
+                <AccordionItem
+                  key={item.id}
+                  item={item}
+                  itemIndex={String(columnStartIndex + itemIndex + 1).padStart(
+                    2,
+                    "0",
+                  )}
+                  isOpen={openItemId === item.id}
+                  onToggle={() => toggleItem(item.id)}
+                />
+              ))}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
 
-export default CodingStandardMain;
+export default CodingStandard;

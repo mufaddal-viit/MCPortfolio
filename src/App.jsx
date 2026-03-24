@@ -18,7 +18,7 @@ import ProjectsMain from "./components/projectsSection/ProjectsMain";
 import SkillsMain from "./components/skillsSection/SkillsMain";
 import { DockDemo } from "./components/dock";
 import CertificateMain from "./components/Certificates/CertificateMain";
-import CodingStandardMain from "./components/codingStandards/codingStandard.jsx";
+import CodingStandardMain from "./components/codingStandards/codingStandardMain.jsx";
 
 const SCROLL_OFFSET = 130;
 const ROUTE_SCROLL_MAX_TRIES = 8;
