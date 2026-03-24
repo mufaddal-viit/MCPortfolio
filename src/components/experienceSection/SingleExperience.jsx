@@ -1,6 +1,3 @@
-import { motion } from "framer-motion";
-import { fadeIn } from "../../framerMotion/variants";
-
 function ExperienceLeft({ intro }) {
   const { timeline, summary, highlights = [] } = intro;
 
@@ -81,20 +78,14 @@ function SingleExperience({ experience, index = 0 }) {
   const experienceKey = id || index;
 
   return (
-    <motion.article
-      variants={fadeIn("up", index * 0.12)}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: false, amount: 0.15 }}
-      className="grid w-full items-center gap-8 lg:grid-cols-[320px_220px_minmax(0,1fr)]"
-    >
+    <article className="grid w-full items-center gap-8 lg:grid-cols-[320px_220px_minmax(0,1fr)]">
       <ExperienceLeft intro={intro} />
       <ExperienceCenter image={intro.image} />
       <ExperienceRight
         descriptionParagraphs={descriptionParagraphs}
         experienceKey={experienceKey}
       />
-    </motion.article>
+    </article>
   );
 }
 

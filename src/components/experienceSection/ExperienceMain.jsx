@@ -1,9 +1,12 @@
-import ExperienceText from "./ExperienceText";
 import SingleExperience from "./SingleExperience";
 import experienceSectionData from "./experienceData";
 import experienceDisplayOrder from "./experienceOrder";
-import { motion } from "framer-motion";
-import { fadeIn } from "../../framerMotion/variants";
+import SectionLayout from "../common/SectionLayout";
+import SectioHeading from "../common/SectioHeading";
+import {
+  SectionBodyMotion,
+  SectionHeadingMotion,
+} from "../../framerMotion/sectionMotion";
 
 const orderIndex = new Map(
   experienceDisplayOrder.map((experienceId, index) => [experienceId, index]),
@@ -24,29 +27,20 @@ const orderedExperiences = [...experienceSectionData.experiences].sort(
 
 const ExperienceMain = () => {
   return (
-    <div id="experience" className="max-w-[1200px] mx-auto px-4">
-      <motion.div
-        variants={fadeIn("down", 0)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.3 }}
-      >
-        <ExperienceText />
-      </motion.div>
-      <div className="space-y-16">
+    <SectionLayout id="experience">
+      <SectionHeadingMotion>
+        <SectioHeading title="Experience" />
+      </SectionHeadingMotion>
+      <SectionBodyMotion className="space-y-16">
         {orderedExperiences.map((experience, index) => (
-          <motion.div
+          <SingleExperience
             key={experience.id || `experience-${index}`}
-            variants={fadeIn("down", 0.35 + index * 0.15)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: false, amount: 0 }}
-          >
-            <SingleExperience experience={experience} index={index} />
-          </motion.div>
+            experience={experience}
+            index={index}
+          />
         ))}
-      </div>
-    </div>
+      </SectionBodyMotion>
+    </SectionLayout>
   );
 };
 
