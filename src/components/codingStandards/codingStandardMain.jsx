@@ -1,32 +1,26 @@
-import { motion } from "framer-motion";
 import CodingStandard from "./codingStandard";
-import CodingStandardText from "./codingStandardText";
-import { fadeIn } from "../../framerMotion/variants";
+import SectionLayout from "../common/SectionLayout";
+import SectioHeading from "../common/SectioHeading";
+import {
+  SectionBodyMotion,
+  SectionHeadingMotion,
+} from "../../framerMotion/sectionMotion";
 
 const CodingStandardMain = () => {
   return (
-    <section
-      id="coding-standards"
-      className="mx-auto mt-[100px] max-w-[1200px] px-4"
-    >
-      <motion.div
-        variants={fadeIn("down", 0)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.3 }}
-      >
-        <CodingStandardText />
-      </motion.div>
+    <SectionLayout id="coding-standards">
+      <SectionHeadingMotion>
+        <SectioHeading
+          title="Engineering Standards"
+          description="I follow a clear engineering baseline for architecture, review, security, testing, and documentation so the codebase stays easy to extend and dependable in production."
+          descriptionClassName="max-w-2xl text-base leading-7 md:text-lg"
+        />
+      </SectionHeadingMotion>
 
-      <motion.div
-        variants={fadeIn("up", 0.2)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.1 }}
-      >
+      <SectionBodyMotion>
         <CodingStandard />
-      </motion.div>
-    </section>
+      </SectionBodyMotion>
+    </SectionLayout>
   );
 };
 

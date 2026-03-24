@@ -1,14 +1,8 @@
 import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
-import { motion } from "framer-motion";
-import { fadeIn } from "../../framerMotion/variants";
 
 const SingleProject = ({ name, year, align, image, link }) => {
   return (
-    <motion.div
-      variants={fadeIn("top", 0)}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: false, amount: 0.1 }}
+    <div
       className={`flex w-full sm:flex-col-reverse items-center gap-8 ${
         align === "left" ? "md:flex-row" : "md:flex-row-reverse"
       } justify-end sm:flex-col`}
@@ -46,7 +40,7 @@ const SingleProject = ({ name, year, align, image, link }) => {
           className="w-full h-full object-cover"
         />
       </div>
-    </motion.div>
+    </div>
   );
 };
 

@@ -1,30 +1,23 @@
-import AboutMeImage from "./AboutMeImage";
-import AboutMeText from "./AboutMeText";
-import { motion } from "framer-motion";
-import { fadeIn } from "../../framerMotion/variants";
+import AboutMeDesc from "./AboutMeDesc";
+import SectionLayout from "../common/SectionLayout";
+import SectioHeading from "../common/SectioHeading";
+import {
+  SectionBodyMotion,
+  SectionHeadingMotion,
+} from "../../framerMotion/sectionMotion";
+
 const AboutMeMain = () => {
   return (
-    <div
-      id="about"
-      className="flex md:flex-row sm:flex-col gap-12 px-4 max-w-[1200px] mx-auto mt-[130px] justify-between items-center"
-    >
-      <motion.div
-        variants={fadeIn("right", 0)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.3 }}
-      >
-        <AboutMeText />
-      </motion.div>
-      {/* <motion.div
-        variants={fadeIn("left", 0)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.3 }}
-      >
-         <AboutMeImage />
-      </motion.div> */}
-    </div>
+    <SectionLayout id="about">
+      <SectionHeadingMotion>
+        <SectioHeading title="About Me" />
+      </SectionHeadingMotion>
+      <SectionBodyMotion>
+        <div className="flex w-full flex-col items-start text-left">
+          <AboutMeDesc />
+        </div>
+      </SectionBodyMotion>
+    </SectionLayout>
   );
 };
 

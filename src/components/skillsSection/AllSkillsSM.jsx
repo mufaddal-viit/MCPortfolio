@@ -4,8 +4,6 @@ import { IoLogoJavascript } from "react-icons/io";
 import { FaReact } from "react-icons/fa";
 import { SiRedux } from "react-icons/si";
 import { RiTailwindCssFill } from "react-icons/ri";
-import { motion } from "framer-motion";
-import { fadeIn } from "../../framerMotion/variants";
 import { FaGithub } from "react-icons/fa";
 import { FaDatabase } from "react-icons/fa";
 
@@ -69,30 +67,26 @@ const skills = [
 const AllSkillsSM = () => {
   return (
     <div className="sm:block lg:hidden px-4">
-  <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 my-12">
-    {skills.map((item, index) => (
-      <motion.div
-        key={index}
-        variants={fadeIn("up", 0.15 * index)} // staggered entrance looks nicer
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.3 }}
-        className="
-          group flex flex-col items-center justify-center
-          aspect-square
-          p-6 rounded-2xl
-          border border-default/20
-          bg-gradient-to-b from-surface/40 to-transparent
-          hover:border-accent-2/40 hover:shadow-md
-          transition-all duration-300
-        "
-      >
-        <item.icon className="mb-4 text-5xl text-accent-2 transition-transform group-hover:scale-110 sm:text-6xl" />
-        <p className="text-sm sm:text-base font-medium">{item.skill}</p>
-      </motion.div>
-    ))}
-  </div>
-</div>
+      <div className="grid grid-cols-2 gap-6 my-12 sm:grid-cols-3">
+        {skills.map((item, index) => (
+          <div
+            key={`${item.skill}-${index}`}
+            className="
+              group flex flex-col items-center justify-center
+              aspect-square
+              p-6 rounded-2xl
+              border border-default/20
+              bg-gradient-to-b from-surface/40 to-transparent
+              hover:border-accent-2/40 hover:shadow-md
+              transition-all duration-300
+            "
+          >
+            <item.icon className="mb-4 text-5xl text-accent-2 transition-transform group-hover:scale-110 sm:text-6xl" />
+            <p className="text-sm sm:text-base font-medium">{item.skill}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

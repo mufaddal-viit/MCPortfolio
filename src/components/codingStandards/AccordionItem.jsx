@@ -21,7 +21,7 @@ function AccordionItem({ item, itemIndex, isOpen, onToggle }) {
         className="flex w-full items-start justify-between gap-6 py-6 text-left text-primary transition-colors duration-200 hover:text-accent md:py-8"
       >
         <span className="flex items-start gap-4 md:gap-6">
-          <span className="pt-1 font-mono text-[0.68rem] font-bold uppercase tracking-[0.28em] text-accent">
+          <span className="pt-1 font-mono text-[0.88rem] font-bold uppercase tracking-[0.28em] text-accent">
             {itemIndex}
           </span>
 
