@@ -1,27 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 import { cn } from "@/lib/utils";
-
-function useMousePosition() {
-  const [mousePosition, setMousePosition] = useState({
-    x: 0,
-    y: 0,
-  });
-
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
-  return mousePosition;
-}
 
 function hexToRgb(hex) {
   let value = hex.replace("#", "");
@@ -84,7 +63,6 @@ export const Particles = ({
   const canvasContainerRef = useRef(null);
   const context = useRef(null);
   const circles = useRef([]);
-  const mousePosition = useMousePosition();
   const mouse = useRef({ x: 0, y: 0 });
   const canvasSize = useRef({ w: 0, h: 0 });
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
@@ -173,19 +151,23 @@ export const Particles = ({
     drawParticles();
   };
 
-  const onMouseMove = () => {
+  const updateMousePosition = (clientX, clientY) => {
     if (!canvasRef.current) return;
 
     const rect = canvasRef.current.getBoundingClientRect();
     const { w, h } = canvasSize.current;
-    const x = mousePosition.x - rect.left - w / 2;
-    const y = mousePosition.y - rect.top - h / 2;
+    const x = clientX - rect.left - w / 2;
+    const y = clientY - rect.top - h / 2;
     const inside = x < w / 2 && x > -w / 2 && y < h / 2 && y > -h / 2;
 
     if (inside) {
       mouse.current.x = x;
       mouse.current.y = y;
+      return;
     }
+
+    mouse.current.x = 0;
+    mouse.current.y = 0;
   };
 
   const remapValue = (value, start1, end1, start2, end2) => {
@@ -260,7 +242,18 @@ export const Particles = ({
       }, 200);
     };
 
+    const handlePointerMove = (event) => {
+      updateMousePosition(event.clientX, event.clientY);
+    };
+
+    const resetMousePosition = () => {
+      mouse.current.x = 0;
+      mouse.current.y = 0;
+    };
+
     window.addEventListener("resize", handleResize);
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    window.addEventListener("pointerleave", resetMousePosition);
 
     return () => {
       if (rafID.current != null) {
@@ -270,16 +263,14 @@ export const Particles = ({
         clearTimeout(resizeTimeout.current);
       }
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerleave", resetMousePosition);
     };
   }, [color]);
 
   useEffect(() => {
-    onMouseMove();
-  }, [mousePosition.x, mousePosition.y]);
-
-  useEffect(() => {
     initCanvas();
-  }, [refresh]);
+  }, [quantity, refresh]);
 
   return (
     <div

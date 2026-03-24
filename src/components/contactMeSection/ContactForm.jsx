@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
 
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -10,17 +9,17 @@ const ContactForm = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState("");
-  const [isSending, setIsSending] = useState(false); // 🆕
-  const [isSent, setIsSent] = useState(false); // 🆕
-
-  const handleName = (e) => setName(e.target.value);
-  const handleEmail = (e) => setEmail(e.target.value);
-  const handleMessage = (e) => setMessage(e.target.value);
+  const [isSending, setIsSending] = useState(false);
+  const [isSent, setIsSent] = useState(false);
 
   const form = useRef();
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const handleName = (event) => setName(event.target.value);
+  const handleEmail = (event) => setEmail(event.target.value);
+  const handleMessage = (event) => setMessage(event.target.value);
+
+  const sendEmail = async (event) => {
+    event.preventDefault();
 
     if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
       alert(
@@ -29,36 +28,33 @@ const ContactForm = () => {
       return;
     }
 
-    // Prevent multiple clicks
     if (isSending || isSent) return;
 
     setIsSending(true);
 
-    emailjs
-      .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form.current, {
+    try {
+      const { default: emailjs } = await import("@emailjs/browser");
+
+      await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form.current, {
         publicKey: EMAILJS_PUBLIC_KEY,
-      })
-      .then(
-        () => {
-          setEmail("");
-          setName("");
-          setMessage("");
-          setSuccess("Message Sent Successfully ✅");
-          setIsSent(true); // Email sent
-          setIsSending(false); // Stop loading
-        },
-        (error) => {
-          console.log("FAILED...", error.text);
-          alert("Failed to send message. Try again.");
-          setIsSending(false); // Reset on failure
-        }
-      );
+      });
+
+      setEmail("");
+      setName("");
+      setMessage("");
+      setSuccess("Message Sent Successfully");
+      setIsSent(true);
+      setIsSending(false);
+    } catch (error) {
+      console.log("FAILED...", error?.text || error);
+      alert("Failed to send message. Try again.");
+      setIsSending(false);
+    }
   };
 
   return (
     <div>
       {success && <p className="mb-4 text-center text-accent">{success}</p>}
-      {/* <Tooltip text="Hover me" tooltip="This is a tooltip!" /> */}
 
       <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-4">
         <input
@@ -66,7 +62,7 @@ const ContactForm = () => {
           name="from_name"
           placeholder="Your Name"
           required
-          className="h-12 rounded-lg bg-input-bg px-3 text-input-fg placeholder:text-secondary/70 text-lg"
+          className="h-12 rounded-lg bg-input-bg px-3 text-lg text-input-fg placeholder:text-secondary/70"
           value={name}
           onChange={handleName}
         />
@@ -75,7 +71,7 @@ const ContactForm = () => {
           name="from_email"
           placeholder="Your Email"
           required
-          className="h-12 rounded-lg bg-input-bg px-3 text-input-fg placeholder:text-secondary/70 text-lg"
+          className="h-12 rounded-lg bg-input-bg px-3 text-lg text-input-fg placeholder:text-secondary/70"
           value={email}
           onChange={handleEmail}
         />
@@ -85,25 +81,23 @@ const ContactForm = () => {
           cols="50"
           placeholder="Message"
           required
-          className="rounded-lg bg-input-bg p-3 text-input-fg placeholder:text-secondary/70 text-lg"
+          className="rounded-lg bg-input-bg p-3 text-lg text-input-fg placeholder:text-secondary/70"
           value={message}
           onChange={handleMessage}
         />
 
-        {/* ✅ Updated Button */}
         <button
           type="submit"
           disabled={isSending || isSent}
-          className={`h-12 w-full rounded-lg border border-accent text-xl font-bold text-tooltip-fg transition-all duration-500
-            ${
-              isSent
-                ? "cursor-not-allowed bg-success"
-                : isSending
+          className={`h-12 w-full rounded-lg border border-accent text-xl font-bold text-tooltip-fg transition-all duration-500 ${
+            isSent
+              ? "cursor-not-allowed bg-success"
+              : isSending
                 ? "cursor-wait bg-muted"
                 : "bg-accent hover:bg-accent-strong"
-            }`}
+          }`}
         >
-          {isSent ? "SENT ✅" : isSending ? "Sending..." : "SEND"}
+          {isSent ? "SENT" : isSending ? "Sending..." : "SEND"}
         </button>
       </form>
     </div>

@@ -1,9 +1,11 @@
-import { useEffect, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { animateScroll, scroller } from "react-scroll";
 import { useLocation, useNavigate } from "react-router-dom";
-import SparkleUnderlineNav from "../Underline";
+
+const SparkleUnderlineNav = lazy(() => import("../Underline"));
 
 const RESUME_URL = "/MUFADDAL_cal_FS_4YOE.pdf";
+const DESKTOP_MEDIA_QUERY = "(min-width: 1024px)";
 
 const links = [
   { label: "Home", section: "home" },
@@ -17,13 +19,57 @@ const links = [
 const SCROLL_OFFSET = 130;
 const HOME_PATH = "/";
 
+function PlainNavbarLinks({
+  items,
+  activeKey,
+  onSelect,
+  className = "",
+  listClassName = "",
+}) {
+  return (
+    <nav className={className}>
+      <ul className={listClassName}>
+        {items.map((item, index) => {
+          const key =
+            typeof item === "string"
+              ? item
+              : item.section || item.label || `item-${index}`;
+          const label = typeof item === "string" ? item : item.label;
+          const isActive =
+            typeof item === "string" ? item === activeKey : item.section === activeKey;
+
+          return (
+            <li key={key}>
+              <button
+                type="button"
+                onClick={() => onSelect(item)}
+                className={`transition-colors duration-200 ${
+                  isActive ? "font-semibold text-accent" : "hover:text-accent"
+                }`}
+              >
+                {label}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+}
+
 const NavbarLinks = ({ activeSection, onItemSelect, onNavigate }) => {
   const rafRef = useRef(0);
   const location = useLocation();
   const navigate = useNavigate();
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window === "undefined"
+      ? true
+      : window.matchMedia(DESKTOP_MEDIA_QUERY).matches,
+  );
 
   const handleSelect = (item) => {
     if (!item || typeof item === "string") return;
+
     if (item.section === "Resume") {
       const link = document.createElement("a");
       link.href = RESUME_URL;
@@ -39,8 +85,6 @@ const NavbarLinks = ({ activeSection, onItemSelect, onNavigate }) => {
     const currentPath = location.pathname || HOME_PATH;
     const nextSection = item.section;
 
-    // If we are on a non-home route (e.g. /blogs), first route back to home
-    // and pass the target section in route state so Home can scroll.
     if (currentPath !== HOME_PATH) {
       if (onNavigate && nextSection) onNavigate(nextSection);
       if (onItemSelect) onItemSelect();
@@ -57,9 +101,25 @@ const NavbarLinks = ({ activeSection, onItemSelect, onNavigate }) => {
         offset: -SCROLL_OFFSET,
       });
     }
+
     if (onNavigate && item.section) onNavigate(item.section);
     if (onItemSelect) onItemSelect();
   };
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(DESKTOP_MEDIA_QUERY);
+    const syncScreenSize = () => setIsDesktop(mediaQuery.matches);
+
+    syncScreenSize();
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", syncScreenSize);
+      return () => mediaQuery.removeEventListener("change", syncScreenSize);
+    }
+
+    mediaQuery.addListener(syncScreenSize);
+    return () => mediaQuery.removeListener(syncScreenSize);
+  }, []);
 
   useEffect(() => {
     if (!onNavigate) return;
@@ -75,12 +135,14 @@ const NavbarLinks = ({ activeSection, onItemSelect, onNavigate }) => {
 
     const getActiveSection = () => {
       let current = "home";
+
       for (const section of sections) {
         const rect = section.getBoundingClientRect();
         if (rect.top - SCROLL_OFFSET <= 0) {
           current = section.id;
         }
       }
+
       return current;
     };
 
@@ -111,15 +173,27 @@ const NavbarLinks = ({ activeSection, onItemSelect, onNavigate }) => {
     };
   }, [activeSection, location.pathname, onNavigate]);
 
+  const sharedProps = {
+    items: links,
+    activeKey: activeSection,
+    onSelect: handleSelect,
+    className:
+      "relative flex w-full justify-center max-lg:mt-3 max-lg:w-[min(92vw,420px)] lg:static",
+    listClassName:
+      "flex gap-8 font-body text-primary lg:w-[680px] lg:items-center lg:justify-between lg:gap-10 lg:text-md max-lg:w-full max-lg:flex-col max-lg:rounded-2xl max-lg:bg-surface/90 max-lg:px-6 max-lg:py-4 max-lg:text-center max-lg:backdrop-blur-lg max-lg:shadow-lg max-lg:shadow-overlay/20",
+  };
+
+  if (!isDesktop) {
+    return <PlainNavbarLinks {...sharedProps} />;
+  }
+
   return (
-    <SparkleUnderlineNav
-      items={links}
-      color="rgb(var(--accent))"
-      onSelect={handleSelect}
-      activeKey={activeSection}
-      className="relative w-full flex justify-center max-lg:mt-3 max-lg:w-[min(92vw,420px)] lg:static"
-      listClassName="flex gap-8 font-body text-primary lg:gap-10 lg:items-center lg:justify-between lg:w-[680px] lg:text-md max-lg:flex-col max-lg:w-full max-lg:rounded-2xl max-lg:bg-surface/90 max-lg:px-6 max-lg:py-4 max-lg:text-center max-lg:backdrop-blur-lg max-lg:shadow-lg max-lg:shadow-overlay/20"
-    />
+    <Suspense fallback={<PlainNavbarLinks {...sharedProps} />}>
+      <SparkleUnderlineNav
+        {...sharedProps}
+        color="rgb(var(--accent))"
+      />
+    </Suspense>
   );
 };
 

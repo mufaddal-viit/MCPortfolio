@@ -1,6 +1,12 @@
 import { lazy, Suspense, useEffect } from "react";
 import { scroller } from "react-scroll";
-import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import AboutMeMain from "./components/aboutMeSection/AboutMeMain";
 import ContactMeMain from "./components/contactMeSection/ContactMeMain";
 import ExperienceMain from "./components/experienceSection/ExperienceMain";
@@ -8,11 +14,11 @@ import FooterMain from "./components/footer/FooterMain";
 import HeroMain from "./components/heroSection/HeroMain";
 import CursorEffect from "./components/cursorEffect";
 import NavbarMain from "./components/navbar/NavbarMain";
-import PortfolioAI from "./components/PortfolioAI";
 import ProjectsMain from "./components/projectsSection/ProjectsMain";
 import SkillsMain from "./components/skillsSection/SkillsMain";
 import { DockDemo } from "./components/dock";
 import CertificateMain from "./components/Certificates/CertificateMain";
+import CodingStandardMain from "./components/codingStandards/codingStandardMain.jsx";
 
 const SCROLL_OFFSET = 130;
 const ROUTE_SCROLL_MAX_TRIES = 8;
@@ -77,6 +83,7 @@ function HomePage() {
       <ExperienceMain />
       <ProjectsMain />
       <CertificateMain />
+      <CodingStandardMain />
       <ContactMeMain />
       <FooterMain />
       <DockDemo />
@@ -100,7 +107,6 @@ function App() {
         />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <PortfolioAI />
     </>
   );
 }
