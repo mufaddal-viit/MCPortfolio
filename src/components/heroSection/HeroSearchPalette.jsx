@@ -68,13 +68,12 @@ export default function HeroSearchPalette() {
   useEffect(() => {
     if (!isOpen) return undefined;
 
-    const previousOverflow = document.body.style.overflow;
     const timerId = window.setTimeout(() => inputRef.current?.focus(), 70);
     document.body.style.overflow = "hidden";
 
     return () => {
       window.clearTimeout(timerId);
-      document.body.style.overflow = previousOverflow;
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
 

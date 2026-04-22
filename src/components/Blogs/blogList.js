@@ -1,4 +1,3 @@
-
 export const BLOG_POSTS = [
   {
     title: "Implementing React Query",
@@ -29,7 +28,7 @@ export const BLOG_POSTS = [
     // date: "Dec 2025",
   },
   {
-    title: "The Reak Defination of Scalable and Reliable Application",
+    title: "The Real Defination of Scalable and Reliable Application",
     oneLiner:
       "The exact workflow I use to build, test, and deploy frontend updates with minimal manual effort.",
     link: "",

@@ -11,11 +11,10 @@ const AboutMeDesc = () => {
         that are scalable, secure, and performant.
         <br />
         During my time at PwC India, I worked on a variety of projects for
-        international clients, gaining valuable experience in agile
-        development, cross-functional collaboration, and delivering
-        high-quality features on time. I regularly engaged with stakeholders to
-        translate business needs into technical solutions, ensuring efficient
-        and timely delivery.
+        international clients, gaining valuable experience in agile development,
+        cross-functional collaboration, and delivering high-quality features on
+        time. I regularly engaged with stakeholders to translate business needs
+        into technical solutions, ensuring efficient and timely delivery.
         <br />
         In addition to application development, I have experience in DevOps
         practices, including setting up and managing CI/CD pipelines using
@@ -29,7 +28,7 @@ const AboutMeDesc = () => {
         up-to-date with the latest tools, trends, and best practices in web
         development. */}
       </p>
-      <button className="mt-10 flex cursor-pointer items-center gap-2 self-start rounded-full border border-accent-2 px-4 py-2 text-lg text-primary transition-all duration-500 hover:bg-accent-2/15">
+      <div className="mt-10 flex cursor-pointer items-center gap-2 self-start rounded-full border border-accent-2 px-4 py-2 text-lg text-primary transition-all duration-500 hover:bg-accent-2/15">
         <Link
           spy={true}
           smooth={true}
@@ -40,7 +39,7 @@ const AboutMeDesc = () => {
         >
           My Projects
         </Link>
-      </button>
+      </div>
     </>
   );
 };

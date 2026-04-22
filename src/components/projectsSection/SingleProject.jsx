@@ -3,9 +3,9 @@ import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
 const SingleProject = ({ name, year, align, image, link }) => {
   return (
     <div
-      className={`flex w-full sm:flex-col-reverse items-center gap-8 ${
+      className={`flex w-full items-center gap-8 sm:flex-col-reverse ${
         align === "left" ? "md:flex-row" : "md:flex-row-reverse"
-      } justify-end sm:flex-col`}
+      } justify-end`}
     >
       <div>
         <h2 className="text-accent-2 font-extrabold md:text-5xl sm:text-3xl">
