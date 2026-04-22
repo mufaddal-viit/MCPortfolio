@@ -19,7 +19,7 @@ import SkillsMain from "./components/skillsSection/SkillsMain";
 import { DockDemo } from "./components/dock";
 import CertificateMain from "./components/Certificates/CertificateMain";
 import CodingStandardMain from "./components/codingStandards/codingStandardMain.jsx";
-
+import { Analytics } from "@vercel/analytics/next";
 const SCROLL_OFFSET = 130;
 const ROUTE_SCROLL_MAX_TRIES = 8;
 const ROUTE_SCROLL_INTERVAL_MS = 60;
@@ -76,6 +76,7 @@ function HomePage() {
 
   return (
     <main className="relative overflow-hidden font-body text-primary">
+      <Analytics />
       <NavbarMain />
       <HeroMain />
       <AboutMeMain />
