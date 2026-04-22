@@ -59,6 +59,8 @@ function PlainNavbarLinks({
 
 const NavbarLinks = ({ activeSection, onItemSelect, onNavigate }) => {
   const rafRef = useRef(0);
+  const activeSectionRef = useRef(activeSection);
+  activeSectionRef.current = activeSection;
   const location = useLocation();
   const navigate = useNavigate();
   const [isDesktop, setIsDesktop] = useState(() =>
@@ -149,7 +151,7 @@ const NavbarLinks = ({ activeSection, onItemSelect, onNavigate }) => {
     const updateActive = () => {
       rafRef.current = 0;
       const nextSection = getActiveSection();
-      if (nextSection && nextSection !== activeSection) {
+      if (nextSection && nextSection !== activeSectionRef.current) {
         onNavigate(nextSection);
       }
     };
@@ -171,7 +173,7 @@ const NavbarLinks = ({ activeSection, onItemSelect, onNavigate }) => {
         rafRef.current = 0;
       }
     };
-  }, [activeSection, location.pathname, onNavigate]);
+  }, [location.pathname, onNavigate]);
 
   const sharedProps = {
     items: links,

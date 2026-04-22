@@ -189,6 +189,13 @@ export default function SparkleUnderlineNav({
     animateToIndex(nextIndex);
   }, [activeKey, activeIndex, animateToIndex, resolveIndex]);
 
+  useEffect(() => {
+    const el = activeRef.current;
+    return () => {
+      if (el) gsap.killTweensOf(el);
+    };
+  }, []);
+
   const onClick = (i, item) => {
     if (i === activeIndex) {
       if (onSelect) onSelect(item, i);

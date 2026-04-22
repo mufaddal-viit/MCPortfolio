@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 function ExperienceLeft({ intro }) {
   const { timeline, summary, highlights = [] } = intro;
 
@@ -34,7 +36,11 @@ function ExperienceCenter({ image }) {
   if (!image?.src) return <div className="hidden lg:block" />;
 
   return (
-    <div className="mx-auto w-full max-w-[140px] p-1 animate-pulse sm:max-w-[170px] lg:max-w-[220px]">
+    <motion.div
+      className="mx-auto w-full max-w-[140px] p-1 sm:max-w-[170px] lg:max-w-[220px]"
+      animate={{ y: [0, -10, 0] }}
+      transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+    >
       <img
         src={image.src}
         alt={image.alt || "experience"}
@@ -43,7 +49,7 @@ function ExperienceCenter({ image }) {
         width="220"
         height="220"
       />
-    </div>
+    </motion.div>
   );
 }
 

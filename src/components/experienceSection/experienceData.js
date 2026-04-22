@@ -66,11 +66,11 @@ const experienceSectionData = {
       ],
     },
     {
-      id: "Azaya-marketting",
+      id: "Azaya-LLC",
       intro: {
         timeline: "July 2025-July 2026",
         summary: "Real time AI Powered RBAC CRM plateform",
-        highlights: [{ number: "Azaya Marketting", text: "Dubai, UAE" }],
+        highlights: [{ number: "Azaya LLC", text: "Dubai, UAE" }],
         image: {
           src: "images/experience-image.png",
           alt: "Experience illustration",

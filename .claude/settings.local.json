@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /c/Users/DELL/Documents/GitHub/MCPortfolio log --oneline -10)",
+      "Bash(git -C /c/Users/DELL/Documents/GitHub/MCPortfolio log --oneline --all)",
+      "Bash(git -C /c/Users/DELL/Documents/GitHub/MCPortfolio status)",
+      "Bash(git -C /c/Users/DELL/Documents/GitHub/MCPortfolio log --all --full-history -- .env)",
+      "Bash(git -C /c/Users/DELL/Documents/GitHub/MCPortfolio show 2bb7d62 --name-only)",
+      "Bash(grep -A 20 \"fontFamily\" echo \"---\")",
+      "Bash(grep -E \"me\\\\.|myself\" echo \"---\")",
+      "Bash(python3 -c ' *)",
+      "Bash(node -e ' *)",
+      "Read(//c/Users/DELL/Documents/GitHub/MCPortfolio/**)"
+    ]
+  }
+}
