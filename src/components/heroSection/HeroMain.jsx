@@ -12,8 +12,8 @@ const DESKTOP_PARTICLE_QUANTITY = 150;
 
 function HeroSearchPaletteFallback() {
   return (
-    <div className="mx-auto mt-2 w-full max-w-md">
-      <div className="flex w-full items-center gap-4 rounded-[1.75rem] border border-default/25 bg-surface/70 px-5 py-4 text-left shadow-[0_20px_60px_rgb(var(--overlay)/0.12)] backdrop-blur-xl">
+    <div className="w-full max-w-md">
+      <div className="flex w-full items-center gap-4 rounded-full border border-default/25 bg-surface/70 px-5 py-4 text-left shadow-[0_20px_60px_rgb(var(--overlay)/0.12)] backdrop-blur-xl">
         <div className="min-w-0 flex-1">
           <p className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-secondary/75">
             Loading AI search...
@@ -27,7 +27,8 @@ function HeroSearchPaletteFallback() {
 const HeroMain = () => {
   const { resolvedTheme } = useTheme();
   const [particleQuantity, setParticleQuantity] = useState(() =>
-    typeof window !== "undefined" && window.matchMedia(MOBILE_MEDIA_QUERY).matches
+    typeof window !== "undefined" &&
+    window.matchMedia(MOBILE_MEDIA_QUERY).matches
       ? MOBILE_PARTICLE_QUANTITY
       : DESKTOP_PARTICLE_QUANTITY,
   );
@@ -36,7 +37,9 @@ const HeroMain = () => {
     const mediaQuery = window.matchMedia(MOBILE_MEDIA_QUERY);
     const syncParticleQuantity = () => {
       setParticleQuantity(
-        mediaQuery.matches ? MOBILE_PARTICLE_QUANTITY : DESKTOP_PARTICLE_QUANTITY,
+        mediaQuery.matches
+          ? MOBILE_PARTICLE_QUANTITY
+          : DESKTOP_PARTICLE_QUANTITY,
       );
     };
 
@@ -44,7 +47,8 @@ const HeroMain = () => {
 
     if (typeof mediaQuery.addEventListener === "function") {
       mediaQuery.addEventListener("change", syncParticleQuantity);
-      return () => mediaQuery.removeEventListener("change", syncParticleQuantity);
+      return () =>
+        mediaQuery.removeEventListener("change", syncParticleQuantity);
     }
 
     mediaQuery.addListener(syncParticleQuantity);
@@ -52,7 +56,7 @@ const HeroMain = () => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden pt-40 pb-16">
+    <section className="relative overflow-hidden pt-32 pb-16 md:pt-40">
       <HeroGradient />
 
       <Particles
@@ -63,16 +67,20 @@ const HeroMain = () => {
         refresh={resolvedTheme}
       />
 
-      <div className="relative z-10 mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-8 px-4 sm:px-6 md:flex-row md:gap-0 md:px-10 lg:pr-20">
-        <HeroText />
-        <div className="flex w-full max-w-md flex-col items-center gap-6 md:w-auto md:max-w-none">
-          <Suspense fallback={<HeroSearchPaletteFallback />}>
-            <HeroSearchPalette />
-          </Suspense>
-          <HeroPic />
+      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-1">
+        <div className="grid items-start gap-8 md:grid-cols-2 md:gap-10 lg:gap-16 ">
+          <div className="flex flex-col items-center gap-12 md:items-start ">
+            <HeroText />
+          </div>
+          <div className="flex flex-col items-center gap-6 md:items-start ">
+            <Suspense fallback={<HeroSearchPaletteFallback />}>
+              <HeroSearchPalette />
+            </Suspense>
+            <HeroPic />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

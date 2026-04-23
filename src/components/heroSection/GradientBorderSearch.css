@@ -1,0 +1,97 @@
+.gbs-outer {
+  padding: 2px;
+  border-radius: 100px;
+  background: linear-gradient(
+    135deg,
+    rgba(21, 209, 233, 1),
+    rgba(251, 151, 24, 1),
+    rgba(21, 209, 233, 1)
+  );
+  cursor: text;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.gbs-outer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  background: linear-gradient(
+    135deg,
+    rgba(99, 179, 237, 0.15),
+    rgba(167, 139, 250, 0.15),
+    transparent
+  );
+  filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.gbs-outer:hover::before {
+  opacity: 1;
+}
+
+.gbs-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px 12px 12px;
+  background: #0c0f1a;
+  border-radius: 100px;
+}
+
+.gbs-icon-ring {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gbs-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.gbs-eyebrow {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 2px;
+}
+
+.gbs-placeholder {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gbs-kbd {
+  padding: 5px 11px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: "Geist Mono", "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.gbs-outer:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(99, 179, 237, 0.5);
+}

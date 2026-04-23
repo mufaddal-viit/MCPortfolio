@@ -1,36 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { LoaderCircle, Search, Sparkles, X } from "lucide-react";
+import "./GradientBorderSearch.css";
 
-// const PROMPT_SUGGESTIONS = [
-//   {
-//     label: "PwC experience",
-//     prompt: "Tell me about Mufaddal's experience at PwC India",
-//     icon: BriefcaseBusiness,
-//   },
-//   {
-//     label: "Tech stack",
-//     prompt: "What is Mufaddal's strongest skill set?",
-//     icon: Code2,
-//   },
-//   {
-//     label: "Projects",
-//     prompt: "Which project should I look at first and why?",
-//     icon: Sparkles,
-//   },
-//   {
-//     label: "Blogs",
-//     prompt: "What blog posts has Mufaddal published?",
-//     icon: BookOpenText,
-//   },
-//   {
-//     label: "Contact",
-//     prompt: "How can I contact Mufaddal?",
-//     icon: Mail,
-//   },
-// ];
-
-export default function HeroSearchPalette() {
+export default function HeroSearchPalette({
+  placeholder = "Ask about projects, skills or anything",
+  label = "Search with AI",
+  shortcut = "⌘ K",
+}) {
   const inputRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -119,32 +96,44 @@ export default function HeroSearchPalette() {
   // };
 
   return (
-    <div className="mx-auto mt-2 w-full max-w-md">
-      <motion.button
-        type="button"
+    <div className="w-full max-w-md">
+      <motion.div
         initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.45, ease: "easeOut" }}
-        onClick={() => setIsOpen(true)}
-        className="group flex w-full items-center gap-4 rounded-[1.75rem] border border-default/25 bg-surface/70 px-5 py-4 text-left shadow-[0_20px_60px_rgb(var(--overlay)/0.12)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-accent/35 hover:bg-surface/80"
       >
-        <div className="flex size-11 items-center justify-center rounded-2xl bg-accent/10 text-accent transition-colors duration-300 group-hover:bg-accent/15">
-          <Search className="size-5" />
+        <div
+          className="gbs-outer"
+          onClick={() => setIsOpen(true)}
+          role="button"
+          tabIndex={0}
+          aria-label={label}
+          onKeyDown={(e) => e.key === "Enter" && setIsOpen(true)}
+        >
+          <div className="gbs-inner">
+            <div className="gbs-icon-ring">
+              <svg
+                width={14}
+                height={14}
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="rgba(255,255,255,0.5)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              >
+                <circle cx="7" cy="7" r="4.5" />
+                <line x1="10.5" y1="10.5" x2="14" y2="14" />
+              </svg>
+            </div>
+            <div className="gbs-content">
+              <div className="gbs-eyebrow">{label}</div>
+              <div className="gbs-placeholder">{placeholder}</div>
+            </div>
+            <div className="gbs-kbd hidden md:block">{shortcut}</div>
+          </div>
         </div>
-        <div className="min-w-0 flex-1">
-          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-secondary/75">
-            Search with AI
-          </p>
-          <p className="mt-1 truncate text-base text-primary">
-            Ask about projects, skills or anything
-          </p>
-        </div>
-        <div className="hidden items-center gap-1 rounded-2xl border border-default/20 bg-page/70 px-3 py-2 text-xs font-medium text-secondary shadow-sm md:flex">
-          <span>Ctrl</span>
-          <span className="text-primary">K</span>
-        </div>
-      </motion.button>
+      </motion.div>
 
       <AnimatePresence>
         {isOpen && (
