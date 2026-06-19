@@ -24,11 +24,9 @@ export default function BlogsPageLayout({ posts }) {
 
       <div className="mt-8 sm:mt-10 grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2">
         {hasPosts ? (
-          posts.map((post, index) => (
-            <BlogCard key={`${post.title}-${index}`} {...post} />
-          ))
+          posts.map((post) => <BlogCard key={post.title} {...post} />)
         ) : (
-          <div className="rounded-2xl border border-default/25 bg-surface/35 p-6 text-secondary">
+          <div className="rounded-card border border-default/15 bg-surface/70 p-6 text-secondary shadow-soft">
             No blog posts added yet.
           </div>
         )}

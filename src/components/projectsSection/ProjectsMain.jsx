@@ -1,7 +1,7 @@
 import SingleProject from "./SingleProject";
 import projectsData from "./projectsData";
 import SectionLayout from "../common/SectionLayout";
-import SectioHeading from "../common/SectioHeading";
+import SectionHeading from "../common/SectionHeading";
 import {
   SectionBodyMotion,
   SectionHeadingMotion,
@@ -11,7 +11,7 @@ const ProjectsMain = () => {
   return (
     <SectionLayout id="projects">
       <SectionHeadingMotion viewport={{ amount: 0.7 }}>
-        <SectioHeading
+        <SectionHeading
           title="Projects"
           description={
             <>
@@ -22,19 +22,17 @@ const ProjectsMain = () => {
           }
         />
       </SectionHeadingMotion>
-      <SectionBodyMotion className="mt-12 flex flex-col gap-20">
-        {projectsData.map((project) => {
-          return (
-            <SingleProject
-              key={project.name}
-              name={project.name}
-              year={project.year}
-              align={project.align}
-              image={project.image}
-              link={project.link}
-            />
-          );
-        })}
+      <SectionBodyMotion className="mt-12 flex flex-col gap-8">
+        {projectsData.map((project, index) => (
+          <SingleProject
+            key={project.name || `project-${index}`}
+            name={project.name}
+            year={project.year}
+            align={project.align}
+            image={project.image}
+            link={project.link}
+          />
+        ))}
       </SectionBodyMotion>
     </SectionLayout>
   );

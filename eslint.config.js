@@ -8,6 +8,17 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 export default [
   { ignores: ['dist'] },
   {
+    // Node-context config files (CommonJS-style require, process, etc.).
+    files: ['*.config.js', 'postcss.config.js', 'tailwind.config.js'],
+    languageOptions: {
+      globals: globals.node,
+      parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+    },
+  },
+  {
     files: ['api/**/*.js'],
     languageOptions: {
       ecmaVersion: 2020,
@@ -58,7 +69,10 @@ export default [
       ...reactHooks.configs.recommended.rules,
       'import/no-unresolved': 'error',
       'react/prop-types': 'off',
-      'react/jsx-no-target-blank': 'off',
+      // Security: external links opened in a new tab must not leak the opener.
+      'react/jsx-no-target-blank': ['warn', { allowReferrer: false }],
+      // Catch stray debug logging before it ships (warn allows console.error/warn).
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },

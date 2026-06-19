@@ -1,6 +1,6 @@
 import AboutMeDesc from "./AboutMeDesc";
 import SectionLayout from "../common/SectionLayout";
-import SectioHeading from "../common/SectioHeading";
+import SectionHeading from "../common/SectionHeading";
 import {
   SectionBodyMotion,
   SectionHeadingMotion,
@@ -10,12 +10,14 @@ const AboutMeMain = () => {
   return (
     <SectionLayout id="about">
       <SectionHeadingMotion>
-        <SectioHeading title="About Me" />
+        <SectionHeading
+          eyebrow="Who I Am"
+          title="About Me"
+          description="A quick look at my background, what I build, and how I work."
+        />
       </SectionHeadingMotion>
-      <SectionBodyMotion>
-        <div className="flex w-full flex-col items-start text-left">
-          <AboutMeDesc />
-        </div>
+      <SectionBodyMotion className="mt-12">
+        <AboutMeDesc />
       </SectionBodyMotion>
     </SectionLayout>
   );

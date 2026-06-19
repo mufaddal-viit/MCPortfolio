@@ -98,7 +98,7 @@ Other: Authentication, authorization, RBAC, microservices, SSR, component optimi
 - Used Docker and collaborated across design, QA, and DevOps.
 - Also worked with Python automation and legacy PHP systems.
 
-2. Azaya Marketting, Dubai, UAE (July 2025 - July 2026)
+2. Azaya LLC, Dubai, UAE (July 2025 - July 2026)
 - Architected and built a multi-tenant SaaS CRM with RBAC.
 - Used a multi-tier microservices architecture.
 - Built backend systems with Nest.js, Prisma, and PostgreSQL.

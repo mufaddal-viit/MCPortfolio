@@ -1,31 +1,32 @@
+import { memo } from "react";
 import { motion } from "framer-motion";
+import Card from "../common/Card";
+import { cn } from "../../lib/utils";
 
 function ExperienceLeft({ intro }) {
   const { timeline, summary, highlights = [] } = intro;
 
   return (
-    <div className="flex flex-col gap-8 items-center lg:items-start">
-      <p className="self-start text-accent font-bold uppercase text-xl lg:text-3xl font-special text-left">
-        {timeline}
-      </p>
+    <div className="flex flex-col items-center gap-6 lg:items-start">
+      <p className="eyebrow self-center lg:self-start">{timeline}</p>
 
-      <div className="flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+      <div className="flex flex-wrap items-center justify-center gap-6 lg:justify-start">
         {highlights.map((highlight, highlightIndex) => (
           <div
             key={`${highlight.number}-${highlight.text}-${highlightIndex}`}
             className="flex flex-col items-center lg:items-start"
           >
-            <p className="m-2 text-5xl font-bold text-accent-2 lg:text-6xl">
+            <p className="text-3xl font-bold text-accent-2 lg:text-4xl">
               {highlight.number}
             </p>
-            <p className="-mt-1 text-lg font-bold uppercase text-accent lg:text-xl">
+            <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-accent lg:text-base">
               {highlight.text}
             </p>
           </div>
         ))}
       </div>
 
-      <p className="text-center text-lg leading-relaxed lg:text-left lg:text-xl">
+      <p className="text-center text-base leading-relaxed text-secondary lg:text-left lg:text-lg">
         {summary}
       </p>
     </div>
@@ -43,7 +44,7 @@ function ExperienceCenter({ image }) {
     >
       <img
         src={image.src}
-        alt={image.alt || "experience"}
+        alt={image.alt || "Experience illustration"}
         loading="lazy"
         decoding="async"
         width="220"
@@ -55,19 +56,20 @@ function ExperienceCenter({ image }) {
 
 function ExperienceRight({ descriptionParagraphs, experienceKey }) {
   return (
-    <div className="w-full rounded-xl border border-default/50 bg-surface/35 p-5 md:p-6">
+    <Card className="w-full p-6 md:p-7">
       {descriptionParagraphs.map((paragraph, paragraphIndex) => (
         <p
           key={`experience-paragraph-${experienceKey}-${paragraphIndex}`}
-          className={`text-sm text-primary md:text-base ${
-            paragraphIndex === descriptionParagraphs.length - 1 ? "" : "mb-4"
-          }`}
+          className={cn(
+            "text-sm leading-relaxed text-primary md:text-base",
+            paragraphIndex === descriptionParagraphs.length - 1 ? "" : "mb-4",
+          )}
         >
           {paragraph.map((segment, segmentIndex) => (
             <span
               key={`experience-segment-${experienceKey}-${paragraphIndex}-${segmentIndex}`}
               className={
-                segment.highlight ? "font-bold text-accent-2" : undefined
+                segment.highlight ? "font-semibold text-accent-2" : undefined
               }
             >
               {segment.text}
@@ -75,7 +77,7 @@ function ExperienceRight({ descriptionParagraphs, experienceKey }) {
           ))}
         </p>
       ))}
-    </div>
+    </Card>
   );
 }
 
@@ -95,4 +97,4 @@ function SingleExperience({ experience, index = 0 }) {
   );
 }
 
-export default SingleExperience;
+export default memo(SingleExperience);

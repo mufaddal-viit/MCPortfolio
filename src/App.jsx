@@ -16,10 +16,11 @@ import CursorEffect from "./components/cursorEffect";
 import NavbarMain from "./components/navbar/NavbarMain";
 import ProjectsMain from "./components/projectsSection/ProjectsMain";
 import SkillsMain from "./components/skillsSection/SkillsMain";
-import { DockDemo } from "./components/dock";
+import { DockDemo } from "./components/DockNavigation";
 import CertificateMain from "./components/Certificates/CertificateMain";
 import CodingStandardMain from "./components/codingStandards/codingStandardMain.jsx";
 import { Analytics } from "@vercel/analytics/react";
+import ErrorBoundary from "./components/common/ErrorBoundary";
 const SCROLL_OFFSET = 130;
 const ROUTE_SCROLL_MAX_TRIES = 8;
 const ROUTE_SCROLL_INTERVAL_MS = 60;
@@ -76,16 +77,18 @@ function HomePage() {
 
   return (
     <>
-      <main className="relative overflow-hidden font-body text-primary">
+      <main className="relative overflow-hidden text-primary">
         <NavbarMain />
-        <HeroMain />
-        <AboutMeMain />
-        <SkillsMain />
-        <ExperienceMain />
-        <ProjectsMain />
-        <CertificateMain />
-        <CodingStandardMain />
-        <ContactMeMain />
+        <ErrorBoundary>
+          <HeroMain />
+          <AboutMeMain />
+          <SkillsMain />
+          <ExperienceMain />
+          <ProjectsMain />
+          <CertificateMain />
+          <CodingStandardMain />
+          <ContactMeMain />
+        </ErrorBoundary>
         <FooterMain />
         <DockDemo />
       </main>

@@ -1,6 +1,6 @@
 import AllSkills from "./AllSkills";
 import SectionLayout from "../common/SectionLayout";
-import SectioHeading from "../common/SectioHeading";
+import SectionHeading from "../common/SectionHeading";
 import {
   SectionBodyMotion,
   SectionHeadingMotion,
@@ -10,13 +10,14 @@ const SkillsMain = () => {
   return (
     <SectionLayout id="skills">
       <SectionHeadingMotion>
-        <SectioHeading title="My Skills" />
+        <SectionHeading
+          eyebrow="Tech Stack"
+          title="My Skills"
+          description="The tools and technologies I reach for to build fast, reliable products."
+        />
       </SectionHeadingMotion>
-      <SectionBodyMotion className="relative min-h-[500px] overflow-hidden">
-        {/* skills on bigger screens */}
+      <SectionBodyMotion className="relative">
         <AllSkills />
-        {/* skills on smaller screens */}
-        {/* <AllSkillsSM /> */}
       </SectionBodyMotion>
     </SectionLayout>
   );

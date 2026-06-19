@@ -2,7 +2,7 @@ import SingleExperience from "./SingleExperience";
 import experienceSectionData from "./experienceData";
 import experienceDisplayOrder from "./experienceOrder";
 import SectionLayout from "../common/SectionLayout";
-import SectioHeading from "../common/SectioHeading";
+import SectionHeading from "../common/SectionHeading";
 import {
   SectionBodyMotion,
   SectionHeadingMotion,
@@ -29,7 +29,7 @@ const ExperienceMain = () => {
   return (
     <SectionLayout id="experience">
       <SectionHeadingMotion>
-        <SectioHeading title="Experience" />
+        <SectionHeading title="Experience" />
       </SectionHeadingMotion>
       <SectionBodyMotion className="space-y-16">
         {orderedExperiences.map((experience, index) => (

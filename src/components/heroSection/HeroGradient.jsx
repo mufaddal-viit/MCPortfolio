@@ -12,9 +12,9 @@ const HeroGradient = () => {
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
     >
-      {glowBlobs.map((blobClassName) => (
+      {glowBlobs.map((blobClassName, index) => (
         <div
-          key={blobClassName}
+          key={`blob-${index}`}
           // Changed 'animate-pulse' to 'animate-drift'
           className={`absolute rounded-full blur-3xl motion-safe:animate-drift ${blobClassName}`}
         />

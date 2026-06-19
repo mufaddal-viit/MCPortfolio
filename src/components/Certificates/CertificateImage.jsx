@@ -1,12 +1,12 @@
-export default function CertificateImage({ urlz, name }) {
+export default function CertificateImage({ src, name }) {
   return (
-    <div>
+    <div className="group mt-5 overflow-hidden rounded-card border border-default/15 bg-surface-2/40 shadow-soft transition-all duration-300 hover:border-accent/50 hover:shadow-card-hover">
       <img
-        src={urlz}
-        alt={name + " certificate"}
+        src={src}
+        alt={`${name} certificate`}
         loading="lazy"
         decoding="async"
-        className="mt-5 rounded-lg hover:scale-110 transition-all duration-700 hover:border-2 "
+        className="w-full transition-transform duration-300 ease-out group-hover:scale-105"
       />
     </div>
   );

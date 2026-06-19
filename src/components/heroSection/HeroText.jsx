@@ -51,7 +51,7 @@ const HeroText = () => {
       >
         <span className="inline-flex min-w-[20ch] items-center justify-center md:justify-start">
           {typedRole}
-          <span className="ml-1 animate-pulse">|</span>
+          <span aria-hidden="true" className="ml-1 animate-pulse">|</span>
         </span>
       </motion.h2>
 
@@ -71,7 +71,7 @@ const HeroText = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0 }}
-        className="text-primary font-bold uppercase text-3xl lg:text-4xl tracking-widest leading-relaxed font-arabic-display"
+        className="text-primary font-bold uppercase text-3xl md:text-[2rem] lg:text-4xl tracking-widest leading-relaxed font-arabic-display"
       >
         مفضل كلكتا
       </motion.h1>

@@ -1,6 +1,9 @@
+import { memo } from "react";
 import { ArrowUpRight, Clock3, Linkedin } from "lucide-react";
+import { cn } from "@/lib/utils";
+import Card from "../common/Card";
 
-export default function BlogCard({
+function BlogCard({
   title,
   oneLiner,
   link,
@@ -9,31 +12,34 @@ export default function BlogCard({
   published = true,
 }) {
   const canOpen = Boolean(published) && Boolean(link);
-  const rootClasses = canOpen
-    ? "group relative overflow-hidden rounded-2xl border border-default/20 bg-surface/35 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:bg-accent/10 sm:p-6"
-    : "group relative overflow-hidden rounded-2xl border border-default/15 bg-surface/25 p-4 transition-all duration-300 cursor-not-allowed select-none opacity-75 sm:p-6";
 
-  const statusLabel = date || (canOpen ? "Published" : "Coming Soon");
+  const statusLabel = canOpen ? date || "Published" : "Coming Soon";
   const statusClasses = canOpen
-    ? "rounded-full border border-accent/35 bg-accent/10 px-2 py-1 text-[10px] uppercase tracking-[0.1em] text-accent/80"
-    : "rounded-full border border-default/20 bg-surface/30 px-2 py-1 text-[10px] uppercase tracking-[0.1em] text-secondary";
+    ? "border-success/40 bg-success/10 text-success"
+    : "border-default/20 bg-surface-2/50 text-secondary";
 
   const cardContent = (
     <>
-      <div className="flex flex-col items-start gap-2 text-xs text-secondary sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between">
         <span className="inline-flex max-w-full items-center gap-2 text-[11px] uppercase tracking-[0.12em] text-secondary sm:text-xs sm:tracking-[0.18em]">
           <Linkedin className="size-3.5 shrink-0 text-accent" />
-          <span className="leading-tight break-words">{tag}</span>
+          <span className="break-words leading-tight">{tag}</span>
         </span>
-        <span className={statusClasses}>
+        <span
+          className={cn(
+            "rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em]",
+            statusClasses,
+          )}
+        >
           {statusLabel}
         </span>
       </div>
 
       <h2
-        className={`mt-4 text-lg sm:text-xl md:text-2xl leading-tight font-semibold transition-colors ${
-          canOpen ? "text-primary group-hover:text-accent" : "text-primary/85"
-        }`}
+        className={cn(
+          "mt-4 text-lg font-semibold leading-tight transition-colors sm:text-xl md:text-2xl",
+          canOpen ? "text-primary group-hover:text-accent" : "text-primary/85",
+        )}
       >
         {title}
       </h2>
@@ -43,13 +49,14 @@ export default function BlogCard({
       </p>
 
       <div
-        className={`mt-5 sm:mt-6 inline-flex items-center gap-2 text-xs sm:text-sm transition-colors ${
-          canOpen ? "text-accent-2 group-hover:text-accent" : "text-secondary"
-        }`}
+        className={cn(
+          "mt-5 inline-flex items-center gap-2 text-xs transition-colors sm:mt-6 sm:text-sm",
+          canOpen ? "text-accent-2 group-hover:text-accent" : "text-secondary",
+        )}
       >
         {canOpen ? "Read on LinkedIn" : "Not published yet"}
         {canOpen ? (
-          <ArrowUpRight className="size-4" />
+          <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         ) : (
           <Clock3 className="size-4" />
         )}
@@ -59,25 +66,29 @@ export default function BlogCard({
 
   if (!canOpen) {
     return (
-      <div
-        className={rootClasses}
+      <Card
+        className="group p-4 opacity-75 sm:p-6"
         aria-disabled="true"
         aria-label={`Blog post not yet published: ${title}`}
       >
         {cardContent}
-      </div>
+      </Card>
     );
   }
 
   return (
-    <a
+    <Card
+      as="a"
+      interactive
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className={rootClasses}
+      className="group p-4 focus-ring sm:p-6"
       aria-label={`Open blog post: ${title}`}
     >
       {cardContent}
-    </a>
+    </Card>
   );
 }
+
+export default memo(BlogCard);

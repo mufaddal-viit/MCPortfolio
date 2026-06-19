@@ -2,7 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="m-icon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/m-icon.svg" />
+    <link rel="apple-touch-icon" href="/m-icon.svg" />
+    <meta name="theme-color" content="#15d1e9" />
     <script>
       (() => {
         const STORAGE_KEY = "theme-preference";
@@ -40,10 +42,72 @@
     />
     <meta
       name="description"
-      content="Mufaddal Calcuttawala is a full-stack developer in Dubai building high-performance, AI-powered SaaS applications with React, Node.js, Nest.js, MongoDB, and AWS."
+      content="Mufaddal Calcuttawala is a full-stack developer, building high-performance, AI-powered SaaS applications with React, Node.js, Nest.js, MongoDB, and AWS."
     />
+    <meta name="author" content="Mufaddal Calcuttawala" />
+    <meta
+      name="keywords"
+      content="Mufaddal Calcuttawala, full-stack developer Dubai, React developer, Node.js, Nest.js, MongoDB, AWS, software engineer"
+    />
+    <link rel="canonical" href="https://www.mufaddal.online/" />
 
-    <title>MUFADDAL</title>
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.mufaddal.online/" />
+    <meta property="og:site_name" content="Mufaddal Calcuttawala" />
+    <meta property="og:title" content="Mufaddal Calcuttawala — Full-Stack Developer" />
+    <meta
+      property="og:description"
+      content="Full-stack developer in Dubai building high-performance, AI-powered SaaS applications with React, Node.js, MongoDB, and AWS."
+    />
+    <meta property="og:image" content="https://www.mufaddal.online/images/myself.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mufaddal Calcuttawala — Full-Stack Developer" />
+    <meta
+      name="twitter:description"
+      content="Full-stack developer in Dubai building high-performance, AI-powered SaaS applications with React, Node.js, MongoDB, and AWS."
+    />
+    <meta name="twitter:image" content="https://www.mufaddal.online/images/myself.jpeg" />
+
+    <!-- Structured data: helps Google understand who this site is about -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://www.mufaddal.online/#person",
+            "name": "Mufaddal Calcuttawala",
+            "url": "https://www.mufaddal.online/",
+            "image": "https://www.mufaddal.online/images/myself.jpeg",
+            "jobTitle": "Full-Stack Developer",
+            "description": "Full-stack developer building high-performance, AI-powered SaaS applications with React, Node.js, Nest.js, MongoDB, and AWS.",
+            "knowsAbout": [
+              "React",
+              "Node.js",
+              "Nest.js",
+              "TypeScript",
+              "MongoDB",
+              "AWS",
+              "Full-Stack Development"
+            ],
+            "sameAs": [
+              "https://www.linkedin.com/in/mufaddal-calcuttawala",
+              "https://github.com/mufaddal-viit"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.mufaddal.online/#website",
+            "url": "https://www.mufaddal.online/",
+            "name": "Mufaddal Calcuttawala — Full-Stack Developer",
+            "publisher": { "@id": "https://www.mufaddal.online/#person" }
+          }
+        ]
+      }
+    </script>
+
+    <title>Mufaddal Calcuttawala — Full-Stack Developer</title>
   </head>
   <body>
     <div id="root"></div>

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 
@@ -18,7 +19,7 @@ function AccordionItem({ item, itemIndex, isOpen, onToggle }) {
         onClick={onToggle}
         aria-expanded={isOpen}
         aria-controls={`${item.id}-panel`}
-        className="flex w-full items-start justify-between gap-6 py-6 text-left text-primary transition-colors duration-200 hover:text-accent md:py-8"
+        className="focus-ring flex w-full items-start justify-between gap-6 rounded-md py-6 text-left text-primary transition-colors duration-200 hover:text-accent md:py-7"
       >
         <span className="flex items-start gap-4 md:gap-6">
           <span className="pt-1 font-mono text-[0.88rem] font-bold uppercase tracking-[0.28em] text-accent">
@@ -32,7 +33,9 @@ function AccordionItem({ item, itemIndex, isOpen, onToggle }) {
 
         <span
           aria-hidden="true"
-          className="mt-1 flex size-8 shrink-0 items-center justify-center text-secondary transition-colors duration-200"
+          className={`mt-1 flex size-8 shrink-0 items-center justify-center transition-colors duration-200 ${
+            isOpen ? "text-accent" : "text-secondary"
+          }`}
         >
           {isOpen ? <Minus className="size-6" /> : <Plus className="size-6" />}
         </span>
@@ -74,4 +77,4 @@ function AccordionItem({ item, itemIndex, isOpen, onToggle }) {
   );
 }
 
-export default AccordionItem;
+export default memo(AccordionItem);

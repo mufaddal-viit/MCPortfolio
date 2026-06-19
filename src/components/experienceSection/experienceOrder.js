@@ -1,5 +1,5 @@
 const experienceDisplayOrder = [
-  "Azaya-marketting",
+  "Azaya-LLC",
   "pwc-front-end-developer",
 ];
 

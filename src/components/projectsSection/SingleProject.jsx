@@ -1,47 +1,57 @@
+import { memo } from "react";
 import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
+import Card from "../common/Card";
+import { cn } from "../../lib/utils";
 
 const SingleProject = ({ name, year, align, image, link }) => {
   return (
-    <div
-      className={`flex w-full items-center gap-8 sm:flex-col-reverse ${
-        align === "left" ? "md:flex-row" : "md:flex-row-reverse"
-      } justify-end`}
+    <Card
+      interactive
+      className={cn(
+        "group flex w-full items-center gap-6 p-5 sm:flex-col-reverse sm:gap-6 sm:p-6 md:gap-8 md:p-7",
+        align === "left" ? "md:flex-row" : "md:flex-row-reverse",
+      )}
     >
-      <div>
-        <h2 className="text-accent-2 font-extrabold md:text-5xl sm:text-3xl">
+      <div
+        className={cn(
+          "flex w-full flex-col gap-3 text-center sm:text-center",
+          align === "left" ? "md:text-left" : "md:text-right md:items-end",
+        )}
+      >
+        <h2 className="text-2xl font-extrabold text-accent-2 sm:text-3xl md:text-4xl">
           {name}
         </h2>
-        {/* <h2
-          className={`text-xl font-thin text-secondary font-special sm:text-center ${
-            align === "left" ? "md:text-right" : "md:text-left"
-          }`}
-        >
-          {year}
-        </h2> */}
+        {year ? (
+          <p className="font-special text-sm font-thin uppercase tracking-wide text-secondary">
+            {year}
+          </p>
+        ) : null}
         <a
           href={link}
           target="_blank"
           rel="noopener noreferrer"
-          className={`mt-3 flex cursor-pointer items-center gap-2 text-2xl text-accent transition-all duration-500 hover:text-accent-2 sm:justify-self-center ${
-            align === "left" ? "md:justify-self-end" : "md:justify-self-start"
-          }`}
+          aria-label={`View ${name} project`}
+          className={cn(
+            "focus-ring inline-flex items-center gap-2 self-center rounded-md text-lg font-semibold text-accent transition-colors duration-300 hover:text-accent-2 sm:self-center",
+            align === "left" ? "md:self-start" : "md:self-end",
+          )}
         >
-          View <BsFillArrowUpRightCircleFill />
+          View Project <BsFillArrowUpRightCircleFill aria-hidden="true" />
         </a>
       </div>
-      <div className="relative h-[210px] w-[210px] transform overflow-hidden rounded-xl border border-default/60 transition-all duration-500 hover:scale-110">
+      <div className="relative aspect-square w-full max-w-[220px] shrink-0 overflow-hidden rounded-card border border-default/15 shadow-soft">
         <img
           src={image}
-          alt={`${name} preview`}
+          alt={`${name} project preview`}
           loading="lazy"
           decoding="async"
-          width="210"
-          height="210"
-          className="w-full h-full object-cover"
+          width="220"
+          height="220"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
-    </div>
+    </Card>
   );
 };
 
-export default SingleProject;
+export default memo(SingleProject);

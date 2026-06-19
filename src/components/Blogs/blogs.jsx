@@ -1,6 +1,6 @@
 import NavbarMain from "../navbar/NavbarMain";
 import FooterMain from "../footer/FooterMain";
-import { DockDemo } from "../dock";
+import { DockDemo } from "../DockNavigation";
 import BlogsPageLayout from "./BlogsPageLayout";
 import { BLOG_POSTS } from "./blogList";
 

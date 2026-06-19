@@ -67,7 +67,7 @@ const HeroMain = () => {
         refresh={resolvedTheme}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-1">
+      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <div className="grid items-start gap-8 md:grid-cols-2 md:gap-10 lg:gap-16 ">
           <div className="flex flex-col items-center gap-12 md:items-start ">
             <HeroText />

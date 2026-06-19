@@ -43,7 +43,7 @@ function PlainNavbarLinks({
               <button
                 type="button"
                 onClick={() => onSelect(item)}
-                className={`transition-colors duration-200 ${
+                className={`focus-ring rounded-md transition-colors duration-200 ${
                   isActive ? "font-semibold text-accent" : "hover:text-accent"
                 }`}
               >
@@ -76,7 +76,7 @@ const NavbarLinks = ({ activeSection, onItemSelect, onNavigate }) => {
       const link = document.createElement("a");
       link.href = RESUME_URL;
       link.download = "MUFADDAL_cal_FS.pdf";
-      link.rel = "noopener";
+      link.rel = "noopener noreferrer";
       document.body.appendChild(link);
       link.click();
       link.remove();

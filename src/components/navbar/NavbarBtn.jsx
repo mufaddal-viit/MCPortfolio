@@ -26,11 +26,11 @@ const NavbarBtn = () => {
     <button
       type="button"
       onClick={handleHireMe}
-      className="group flex cursor-pointer items-center gap-2 rounded-full border border-accent/70 bg-gradient-to-r from-accent-strong to-accent-2 px-3 py-2 font-body text-sm font-bold text-tooltip-fg transition-all duration-500 hover:scale-[1.03] hover:border-accent-2 hover:shadow-lg hover:shadow-[rgb(var(--glow-primary)/0.35)] sm:px-4 sm:text-base md:text-lg"
+      className="group focus-ring flex cursor-pointer items-center gap-2 rounded-full border border-accent/70 bg-gradient-to-r from-accent-strong to-accent-2 px-3 py-2 font-body text-sm font-bold text-tooltip-fg transition-all duration-500 hover:scale-[1.03] hover:border-accent-2 hover:shadow-lg hover:shadow-[rgb(var(--glow-primary)/0.35)] sm:px-4 sm:text-base md:text-lg"
     >
       Hire Me
-      <div className="sm:hidden md:block">
-        <LuArrowDownRight className="animate-[spin_1.5s_linear_infinite] transition-transform" />
+      <div className="hidden md:block">
+        <LuArrowDownRight className="animate-spin-fast transition-transform" />
       </div>
     </button>
   );

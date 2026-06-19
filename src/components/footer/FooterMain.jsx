@@ -48,24 +48,23 @@ const FooterMain = () => {
   };
 
   return (
-    <div className="px-4">
-      <div className="mt-24 h-[1px] w-full bg-default/50"></div>
-      <div className="mx-auto mt-4 max-w-[1200px] justify-between md:flex sm:hidden">
+    <footer className="mt-24 border-t border-default/15 px-4">
+      <div className="mx-auto flex max-w-content flex-col items-center gap-8 py-12 md:flex-row md:items-center md:justify-between">
         <button
           type="button"
           onClick={() => goToSection("about")}
-          className="mt-4 cursor-pointer text-3xl text-primary transition-all duration-500 hover:text-accent-2"
+          className="focus-ring cursor-pointer rounded-md text-2xl font-semibold tracking-wide text-primary transition-colors duration-300 hover:text-accent-2 md:text-3xl"
         >
           Mufaddal Calcuttawala
         </button>
-        <ul className="mt-4 flex gap-4 text-xl text-primary">
+        <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-base text-muted">
           {footerLinks.map((item, index) => {
             return (
               <li key={index}>
                 <button
                   type="button"
                   onClick={() => goToSection(item.section)}
-                  className="cursor-pointer transition-all duration-500 hover:text-accent-2"
+                  className="focus-ring cursor-pointer rounded-md transition-colors duration-300 hover:text-accent-2"
                 >
                   {item.name}
                 </button>
@@ -75,10 +74,10 @@ const FooterMain = () => {
         </ul>
       </div>
 
-      <p className="mx-auto mt-20 mb-12 text-center text-sm text-secondary">
+      <p className="border-t border-default/15 py-8 text-center text-sm text-muted">
         &copy; 2025 Mufaddal | All Rights Reserved.
       </p>
-    </div>
+    </footer>
   );
 };
 

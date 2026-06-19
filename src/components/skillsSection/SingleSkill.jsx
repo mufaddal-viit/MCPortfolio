@@ -81,40 +81,29 @@ const fallbackColors = {
   borderHover: "group-hover:border-accent-2/60",
 };
 
+import { memo } from "react";
+
 const SingleSkill = ({ imgSvg, text, color }) => {
-  // Get color prefix (e.g. "html" → "html")
   const colors = colorClassMap[color] || fallbackColors;
 
   return (
-    <div
-      className={`
-        group relative
-        flex flex-col items-center
-        transition-all duration-400 ease-out
-        hover:animate-bounce hover:scale-[1.04]
-        focus-within:-translate-y-2 focus-within:scale-[1.04]
-        focus:outline-none cursor-pointer
-      `}
-    >
+    <div className="group flex w-full max-w-[150px] flex-col items-center">
       {/* Icon container with background & border */}
       <div
         className={`
           relative flex items-center justify-center
-          w-20 h-20 sm:w-24 sm:h-24
+          h-20 w-20 sm:h-24 sm:w-24
           ${colors.bgLight} ${colors.bgHover}
-          rounded-full
-          border-4 border-default/60 ${colors.borderHover}
-          shadow-sm group-hover:shadow-md
-          backdrop-blur-[2px]
-          transition-all duration-400 ease-out
-          group-hover:rotate-3
+          rounded-2xl border border-default/40 ${colors.borderHover}
+          shadow-soft transition-all duration-300 ease-out
+          group-hover:-translate-y-1.5 group-hover:shadow-card
         `}
       >
         <div
           className={`
             ${colors.text} text-5xl sm:text-6xl
-            group-hover:scale-110 group-hover:rotate-6
-            transition-transform duration-500 ease-out
+            transition-transform duration-300 ease-out
+            group-hover:scale-110
           `}
         >
           {imgSvg}
@@ -122,18 +111,11 @@ const SingleSkill = ({ imgSvg, text, color }) => {
       </div>
 
       {/* Skill name */}
-      <p
-        className={`
-          mt-4 text-base sm:text-lg font-semibold text-center
-          text-primary/90 group-hover:text-primary
-          tracking-wide
-          transition-colors duration-300
-        `}
-      >
+      <p className="mt-4 text-center text-sm font-semibold tracking-wide text-secondary transition-colors duration-300 group-hover:text-primary sm:text-base">
         {text}
       </p>
     </div>
   );
 };
 
-export default SingleSkill;
+export default memo(SingleSkill);

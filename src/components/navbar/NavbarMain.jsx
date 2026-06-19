@@ -2,7 +2,6 @@ import NavbarLogo from "./NavbarLogo";
 import NavbarLinks from "./NavbarLinks";
 import NavbarBtn from "./NavbarBtn";
 import NavbarToggler from "./NavbarToggler";
-// import NavbarSocial from "./NavbarSocial";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -82,9 +81,6 @@ const NavbarMain = () => {
       <div className="relative z-20 mx-auto max-w-[1300px] sm:px-4">
         <div className="relative mt-3 flex items-center gap-3 rounded-full border border-default/35 bg-surface/55 px-3 py-3 backdrop-blur-xl shadow-lg shadow-overlay/20 sm:px-4 md:px-6 lg:grid lg:grid-cols-[auto,1fr,auto] lg:gap-4">
           <NavbarLogo onHomeSelect={() => setActiveSection("home")} />
-          {/* <div className="flex-1 flex justify-center lg:hidden">
-            <NavbarSocial className="pt-0" />
-          </div> */}
           <div className="hidden lg:flex lg:flex-1 lg:justify-center">
             <NavbarLinks
               activeSection={activeSection}

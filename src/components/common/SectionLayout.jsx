@@ -1,8 +1,13 @@
+import { cn } from "@/lib/utils";
+
 const SectionLayout = ({ id, className = "", children }) => {
   return (
     <section
       id={id}
-      className={`mx-auto mt-[100px] max-w-[1200px] px-4 ${className}`}
+      className={cn(
+        "mx-auto mt-section max-w-content scroll-mt-28 px-4 sm:px-6",
+        className,
+      )}
     >
       {children}
     </section>

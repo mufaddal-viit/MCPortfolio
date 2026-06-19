@@ -33,8 +33,6 @@ const NavbarLogo = ({ onHomeSelect }) => {
           MC
         </span>
       </button>
-
-      {/* <NavbarSocial className="hidden lg:flex pt-2 ml-4" /> */}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import ContactMeLeft from "./ContactMeLeft";
 import ContactMeRight from "./ContactMeRight";
 import { useState } from "react";
 import SectionLayout from "../common/SectionLayout";
-import SectioHeading from "../common/SectioHeading";
+import SectionHeading from "../common/SectionHeading";
 import {
   SectionBodyMotion,
   SectionHeadingMotion,
@@ -14,10 +14,14 @@ const ContactMeMain = () => {
   return (
     <SectionLayout id="contact">
       <SectionHeadingMotion>
-        <SectioHeading title="Contact Me" />
+        <SectionHeading
+          eyebrow="Get In Touch"
+          title="Contact Me"
+          description="Have a project in mind or just want to say hello? Drop me a message."
+        />
       </SectionHeadingMotion>
       <SectionBodyMotion>
-        <div className="flex justify-between gap-24 rounded-2xl bg-surface px-8 py-8 lg:flex-row sm:flex-col">
+        <div className="card flex flex-col justify-between gap-10 p-6 sm:p-8 lg:flex-row lg:gap-16 lg:p-10">
           <div
             className="relative"
             onMouseEnter={() => setIsTooltipOpen(true)}
@@ -34,7 +38,6 @@ const ContactMeMain = () => {
           </div>
           <ContactMeRight />
         </div>
-        <div className="mt-14 h-1 w-full bg-surface-2 lg:block sm:hidden"></div>
       </SectionBodyMotion>
     </SectionLayout>
   );
