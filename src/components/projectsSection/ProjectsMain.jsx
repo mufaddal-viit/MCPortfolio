@@ -31,6 +31,7 @@ const ProjectsMain = () => {
             align={project.align}
             image={project.image}
             link={project.link}
+            about={project.about}
           />
         ))}
       </SectionBodyMotion>
