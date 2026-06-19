@@ -2,7 +2,7 @@ import { memo } from "react";
 import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
 import { cn } from "../../lib/utils";
 
-const SingleProject = ({ name, year, align, image, link, about }) => {
+const SingleProject = ({ name, year, align, image, link, about, note }) => {
   const alignItems =
     align === "left" ? "md:text-left md:items-start" : "md:text-right md:items-end";
 
@@ -32,6 +32,15 @@ const SingleProject = ({ name, year, align, image, link, about }) => {
             {about}
           </p>
         ) : null}
+
+        {note ? (
+          <div className="grid max-w-md grid-rows-[0fr] opacity-0 transition-all duration-500 ease-out group-hover:grid-rows-[1fr] group-hover:opacity-100 group-focus-within:grid-rows-[1fr] group-focus-within:opacity-100">
+            <p className="overflow-hidden text-sm leading-relaxed text-muted">
+              {note}
+            </p>
+          </div>
+        ) : null}
+
         <a
           href={link}
           target="_blank"
@@ -54,7 +63,7 @@ const SingleProject = ({ name, year, align, image, link, about }) => {
             decoding="async"
             width="220"
             height="220"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:blur-[2px] group-hover:brightness-90"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-surface-2/50 text-3xl font-extrabold uppercase text-accent/40">
